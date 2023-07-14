@@ -1,6 +1,6 @@
-import { useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { getContacts } from 'redux/operations';
+// import { useEffect } from 'react';
+import { useSelector } from 'react-redux';
+// import { getContacts } from 'redux/operations';
 import { selectFilter } from 'redux/selectors';
 import { DivContacts, ListContacts } from './PhoneBookListStyled';
 import { BookItem } from 'components/PhoneBookListItem';
@@ -24,14 +24,11 @@ export function PhoneBookList() {
 
   const filter = useSelector(selectFilter);
 
-  // let filteredArray = [];
-  // if (contactsRTKQuery) {
   const filteredArray = contactsRTKQuery.filter(el =>
     el.nameContact.toLowerCase().includes(filter)
   );
-  // }
 
-  const dispatch = useDispatch();
+  // const dispatch = useDispatch();
 
   // useEffect(() => {
   //   dispatch(getContacts());
