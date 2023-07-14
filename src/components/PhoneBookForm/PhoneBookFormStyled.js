@@ -3,20 +3,22 @@ export const BookForm = styled.form`
   padding: 5px;
 `;
 export const Div = styled.div`
-  border: 1px solid black;
+  border: 1px solid rgb(46, 191, 145);
   border-radius: 5px;
 `;
 export const NameInput = styled.input`
   width: 300px;
   height: 30px;
-  margin: 0.5em;
-  margin-bottom: 2em;
-  padding: 0.2em;
+  margin: 0.5rem;
+  margin-bottom: 2rem;
+  padding: 0.2rem;
+  background: linear-gradient(310deg, rgb(131, 96, 195), rgb(46, 191, 145));
+  outline: none;
   &:hover,
   &:focus {
-    box-shadow: 0px 0px 8px 3px rgba(147, 114, 163, 0.75);
-    -webkit-box-shadow: 0px 0px 8px 3px rgba(147, 114, 163, 0.75);
-    -moz-box-shadow: 0px 0px 8px 3px rgba(147, 114, 163, 0.75);
+    box-shadow: 0px 0px 8px 3px rgba(131, 96, 195, 0.75);
+    -webkit-box-shadow: 0px 0px 8px 3px rgba(131, 96, 195, 0.75);
+    -moz-box-shadow: 0px 0px 8px 3px rgba(131, 96, 195, 0.75);
   }
 `;
 export const Label = styled.label`
@@ -24,28 +26,29 @@ export const Label = styled.label`
   margin: 0.5em;
 `;
 export const Paragraph = styled.p`
-  margin: 0.5em;
+  margin: 0.5rem;
 `;
 export const AddBtn = styled.button`
-  margin: 0.5em;
+  margin: 0.5rem;
   padding: 8px;
   background: transparent;
   border-radius: 10px;
-  border: 1px solid gray;
+  border: 1px solid rgb(46, 191, 145);
+  transition: background 500ms linear 0ms;
   &:hover,
   &:focus {
     /* background: rgba(0, 216, 255, 074); */
-    background: rgba(147, 114, 163, 074);
+    background: rgba(131, 96, 195, 0.74);
   }
 `;
 export const TelInput = styled(NameInput)``;
 export const SearchInput = styled(NameInput)``;
 export const ListBtn = styled(AddBtn)`
   margin: 0;
-  padding: 0.3em;
+  padding: 0.3rem;
 `;
 export const ErrorDiv = styled.div`
-  margin: 0.2em;
+  margin: 0.2rem;
   font-size: 12px;
   font-weight: 600;
   color: red;

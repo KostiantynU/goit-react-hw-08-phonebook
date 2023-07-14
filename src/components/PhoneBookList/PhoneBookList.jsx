@@ -2,10 +2,10 @@
 import { useSelector } from 'react-redux';
 // import { getContacts } from 'redux/operations';
 import { selectFilter } from 'redux/selectors';
-import { DivContacts, ListContacts } from './PhoneBookListStyled';
+import { ListContacts, LoadingMessage } from './PhoneBookListStyled';
 import { BookItem } from 'components/PhoneBookListItem';
-
 import { useGetContactsQuery } from 'redux/contactsQuery';
+import { motion } from 'framer-motion';
 
 export function PhoneBookList() {
   const {
@@ -35,19 +35,33 @@ export function PhoneBookList() {
   // }, [dispatch]);
 
   return (
-    <DivContacts>
-      {errorRTKQuery && <p>Some error hapenned: {errorRTKQuery}</p>}
-      {isFetchingRTKQuery ? (
-        <p>Loading contacts...</p>
-      ) : (
-        <ListContacts>
-          {filteredArray.map(({ nameContact, id, numberContact }) => {
-            return (
-              <BookItem key={id} nameContact={nameContact} numberContact={numberContact} id={id} />
-            );
-          })}
-        </ListContacts>
+    <>
+      {errorRTKQuery && (
+        <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}>
+          <p>Some error hapenned: {errorRTKQuery}</p>
+        </motion.div>
       )}
-    </DivContacts>
+      {isFetchingRTKQuery && (
+        <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}>
+          <LoadingMessage>Loading contacts...</LoadingMessage>
+        </motion.div>
+      )}
+      {!isFetchingRTKQuery && (
+        <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}>
+          <ListContacts>
+            {filteredArray.map(({ nameContact, id, numberContact }) => {
+              return (
+                <BookItem
+                  key={id}
+                  nameContact={nameContact}
+                  numberContact={numberContact}
+                  id={id}
+                />
+              );
+            })}
+          </ListContacts>
+        </motion.div>
+      )}
+    </>
   );
 }
