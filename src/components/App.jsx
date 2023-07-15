@@ -1,14 +1,14 @@
 import React from 'react';
 import { Container, MainTitle, WrapperForContent, AddDiv, FilterListDiv } from './AppStyled';
 import { Title } from './PhoneBookList/PhoneBookListStyled';
-import { PhoneBookForm } from './PhoneBookForm';
-import { PhoneBookList } from './PhoneBookList/PhoneBookList';
-import { Filter } from './Filter';
+import PhoneBookForm from './PhoneBookForm/PhoneBookFormik';
+import PhoneBookList from './PhoneBookList/PhoneBookList';
+import Filter from './Filter/Filter';
 import { AppBar } from './AppBar/AppBar';
 import { AnimatePresence } from 'framer-motion';
 import { motion } from 'framer-motion';
 
-import HomePage from 'pages/Home';
+import HomePage from 'pages/HomePage';
 
 export function App() {
   return (

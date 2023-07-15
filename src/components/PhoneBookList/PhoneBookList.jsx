@@ -3,11 +3,11 @@ import { useSelector } from 'react-redux';
 // import { getContacts } from 'redux/operations';
 import { selectFilter } from 'redux/selectors';
 import { ListContacts, LoadingMessage } from './PhoneBookListStyled';
-import { BookItem } from 'components/PhoneBookListItem';
+import BookItem from 'components/PhoneBookListItem/PhoneBookListItem';
 import { useGetContactsQuery } from 'redux/contactsQuery';
 import { motion } from 'framer-motion';
 
-export function PhoneBookList() {
+function PhoneBookList() {
   const {
     data: contactsRTKQuery = [],
     error: errorRTKQuery,
@@ -65,3 +65,5 @@ export function PhoneBookList() {
     </>
   );
 }
+
+export default PhoneBookList;

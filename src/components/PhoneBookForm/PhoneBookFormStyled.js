@@ -35,6 +35,7 @@ export const AddBtn = styled.button`
   border-radius: 10px;
   border: 1px solid rgb(46, 191, 145);
   transition: background 500ms linear 0ms;
+  color: inherit;
   &:hover,
   &:focus {
     /* background: rgba(0, 216, 255, 074); */

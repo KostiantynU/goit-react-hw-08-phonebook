@@ -46,7 +46,7 @@ export const StyledNavLink = styled(NavLink)`
   transition: background 500ms linear 0ms, color 500ms linear 0ms, box-shadow 500ms linear 0ms;
   text-decoration: none;
   border: 1px solid rgb(46, 191, 145);
-  color: black;
+  color: inherit;
   &:hover {
     color: white;
     background: rgba(131, 96, 195, 0.74);
@@ -78,7 +78,7 @@ export const LogOutBtn = styled(AddBtn)`
   padding: 20px 25px;
   border-radius: 10px;
   transition: background 500ms linear 0ms, color 500ms linear 0ms, box-shadow 500ms linear 0ms;
-
+  color: inherit;
   border: 1px solid rgb(46, 191, 145);
   &:hover {
     background: rgba(46, 191, 145, 0.75);

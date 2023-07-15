@@ -5,7 +5,7 @@ import { useFormik } from 'formik';
 import { useAddContactRTKQueryMutation, useGetContactsQuery } from 'redux/contactsQuery';
 import { BookForm, NameInput, AddBtn, Label, Div, TelInput, ErrorDiv } from './PhoneBookFormStyled';
 
-export function PhoneBookForm() {
+function PhoneBookForm() {
   // const { items: contactsItems } = useSelector(selectContactsList);
   // const dispatch = useDispatch();
 
@@ -98,3 +98,5 @@ export function PhoneBookForm() {
     </BookForm>
   );
 }
+
+export default PhoneBookForm;

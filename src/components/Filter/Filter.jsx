@@ -3,7 +3,7 @@ import { selectFilter } from 'redux/selectors';
 import { changeFilter } from 'redux/contactsSlice';
 import { SearchInput, Paragraph } from '../PhoneBookForm/PhoneBookFormStyled';
 
-export function Filter() {
+function Filter() {
   const filterValue = useSelector(selectFilter);
   const dispatch = useDispatch();
 
@@ -17,3 +17,5 @@ export function Filter() {
     </>
   );
 }
+
+export default Filter;

@@ -1,7 +1,7 @@
 import { ListBtn } from 'components/PhoneBookForm/PhoneBookFormStyled';
 import { EditContactForm, EditInput } from './EditContactStyled';
 
-export const EditContact = () => {
+const EditContact = () => {
   return (
     <>
       <EditContactForm>
@@ -11,3 +11,5 @@ export const EditContact = () => {
     </>
   );
 };
+
+export default EditContact;

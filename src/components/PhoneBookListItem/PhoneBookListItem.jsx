@@ -6,9 +6,9 @@ import { useDeleteContactRTKQueryMutation } from 'redux/contactsQuery';
 import { selectEditOpen } from 'redux/selectors';
 import { PhoneBookListItem, NameSpan, TelSpan } from './PhoneBookListItemStyled';
 import { ListBtn } from 'components/PhoneBookForm/PhoneBookFormStyled';
-import { EditContact } from 'components/EditContact';
+import EditContact from 'components/EditContact/EditContact';
 
-export function BookItem({ nameContact, numberContact, id }) {
+function BookItem({ nameContact, numberContact, id }) {
   // const dispatch = useDispatch();
   // const handleDelete = () => dispatch(deleteContact(id));
   const isEditOpen = useSelector(selectEditOpen);
@@ -32,3 +32,4 @@ BookItem.propTypes = {
   numberContact: PropTypes.string.isRequired,
   id: PropTypes.string.isRequired,
 };
+export default BookItem;
