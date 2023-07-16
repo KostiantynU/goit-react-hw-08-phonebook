@@ -1,6 +1,6 @@
 export const selectFilter = state => {
   console.log(state);
-  return state.filter;
+  return state.contactsReducer.filter;
 };
-export const selectContactsList = state => state.contacts;
-export const selectEditOpen = state => state.isEditOpen;
+export const selectContactsList = state => state.contactsReducer;
+export const selectEditOpen = state => state.contactsReducer.isEditOpen;

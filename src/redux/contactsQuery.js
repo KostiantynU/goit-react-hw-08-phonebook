@@ -33,4 +33,4 @@ export const {
   useAddContactRTKQueryMutation,
   useDeleteContactRTKQueryMutation,
 } = contactsAPI;
-export const { contactsAPIreducer } = contactsAPI.reducer;
+export const contactsAPIreducer = contactsAPI.reducer;

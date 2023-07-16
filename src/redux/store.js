@@ -1,6 +1,6 @@
 import { combineReducers, configureStore } from '@reduxjs/toolkit';
 import { contactsReducer } from './contactsSlice';
-import { contactsAPI } from './contactsQuery';
+import { contactsAPI, contactsAPIreducer } from './contactsQuery';
 import {
   persistStore,
   persistReducer,
@@ -19,7 +19,8 @@ const persistConfig = {
 };
 const rootReducer = combineReducers({
   contactsReducer,
-  [contactsAPI.reducerPath]: contactsAPI.reducer,
+  contactsAPIreducer,
+  // [contactsAPI.reducerPath]: contactsAPI.reducer,
 });
 
 const persistedReducer = persistReducer(persistConfig, rootReducer);

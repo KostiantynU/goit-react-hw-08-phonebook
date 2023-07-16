@@ -1,7 +1,7 @@
-// import { useEffect } from 'react';
-import { useSelector } from 'react-redux';
-// import { getContacts } from 'redux/operations';
-import { selectFilter } from 'redux/selectors';
+import { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { getContacts } from 'redux/operations';
+import { selectContactsList, selectFilter } from 'redux/selectors';
 import { ListContacts, LoadingMessage } from './PhoneBookListStyled';
 import BookItem from 'components/PhoneBookListItem/PhoneBookListItem';
 import { useGetContactsQuery } from 'redux/contactsQuery';
@@ -16,37 +16,37 @@ function PhoneBookList() {
     // skip: true, // pokemanName === ""
   });
 
-  // const {
-  //   items: contactsItems,
-  //   isLoading: isLoadingRedux,
-  //   error: errorRedux,
-  // } = useSelector(selectContactsList);
+  const {
+    items: contactsItemsRedux = [],
+    isLoading: isLoadingRedux,
+    error: errorRedux,
+  } = useSelector(selectContactsList);
 
   const filter = useSelector(selectFilter);
 
-  const filteredArray = contactsRTKQuery.filter(el =>
+  const filteredArray = contactsItemsRedux.filter(el =>
     el.nameContact.toLowerCase().includes(filter)
   );
 
-  // const dispatch = useDispatch();
+  const dispatch = useDispatch();
 
-  // useEffect(() => {
-  //   dispatch(getContacts());
-  // }, [dispatch]);
+  useEffect(() => {
+    dispatch(getContacts());
+  }, [dispatch]);
 
   return (
     <>
-      {errorRTKQuery && (
+      {errorRedux && (
         <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}>
-          <p>Some error hapenned: {errorRTKQuery}</p>
+          <p>Some error hapenned: {errorRedux}</p>
         </motion.div>
       )}
-      {isFetchingRTKQuery && (
+      {isLoadingRedux && (
         <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}>
           <LoadingMessage>Loading contacts...</LoadingMessage>
         </motion.div>
       )}
-      {!isFetchingRTKQuery && (
+      {!isLoadingRedux && (
         <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}>
           <ListContacts>
             {filteredArray.map(({ nameContact, id, numberContact }) => {
