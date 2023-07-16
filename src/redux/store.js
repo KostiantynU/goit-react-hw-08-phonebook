@@ -19,7 +19,7 @@ const persistConfig = {
 };
 const rootReducer = combineReducers({
   contactsReducer,
-  contactsAPI,
+  [contactsAPI.reducerPath]: contactsAPI.reducer,
 });
 
 const persistedReducer = persistReducer(persistConfig, rootReducer);
