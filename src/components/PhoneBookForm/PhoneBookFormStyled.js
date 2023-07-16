@@ -7,7 +7,7 @@ export const Div = styled.div`
   border-radius: 5px;
 `;
 export const NameInput = styled.input`
-  width: 300px;
+  width: ${props => (props.formadd ? `${props.formadd}` : '100%')};
   height: 30px;
   margin: 0.5rem;
   margin-bottom: 2rem;
@@ -30,7 +30,7 @@ export const Paragraph = styled.p`
 `;
 export const AddBtn = styled.button`
   margin: 0.5rem;
-  padding: 8px;
+  padding: ${props => (props.padding ? `${props.padding}` : '8px')};
   background: transparent;
   border-radius: 10px;
   border: 1px solid rgb(46, 191, 145);

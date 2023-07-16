@@ -1,8 +1,9 @@
 import { useFormik } from 'formik';
 import { motion } from 'framer-motion';
 import { AddBtn, NameInput } from 'components/PhoneBookForm/PhoneBookFormStyled';
-import { LogInFormStyled } from './LogInFormStyled';
-function LogInForm() {
+import { LogInFormStyled } from 'components/LogInForm/LogInFormStyled';
+
+const RegisterFormStyled = () => {
   const validate = values => {
     const errors = {};
     if (!values.email) {
@@ -14,12 +15,15 @@ function LogInForm() {
     if (!values.password) {
       errors.password = 'Required';
     }
-    //   if (
+    // else if (
     //   !/^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*])(?=.{8,})/i.test(values.password)
-    // )
-    // else {
+    // ) {
     //   errors.password = 'Invalid password';
     // }
+
+    if (!values.username) {
+      errors.username = 'Required';
+    }
 
     return errors;
   };
@@ -28,6 +32,7 @@ function LogInForm() {
     initialValues: {
       email: '',
       password: '',
+      username: '',
     },
     validate,
     onSubmit: values => {
@@ -37,6 +42,19 @@ function LogInForm() {
 
   return (
     <LogInFormStyled onSubmit={formik.handleSubmit}>
+      <label htmlFor="username">Enter your name</label>
+      <NameInput
+        type="text"
+        name="username"
+        {...formik.getFieldProps('username')}
+        formadd="400px"
+      />
+      {formik.touched.username && formik.errors.username ? (
+        <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}>
+          <div>{formik.errors.username}</div>
+        </motion.div>
+      ) : null}
+
       <label htmlFor="email">Enter your e-mail</label>
       <NameInput type="email" name="email" {...formik.getFieldProps('email')} formadd="400px" />
       {formik.touched.email && formik.errors.email ? (
@@ -61,8 +79,9 @@ function LogInForm() {
       </AddBtn>
     </LogInFormStyled>
   );
-}
+};
 
-export default LogInForm;
 // this is for create pass ("^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*])(?=.{8,})")
 // this is for create pass, less difficulty ("^(((?=.*[a-z])(?=.*[A-Z]))|((?=.*[a-z])(?=.*[0-9]))|((?=.*[A-Z])(?=.*[0-9])))(?=.{6,})")
+
+export default RegisterFormStyled;

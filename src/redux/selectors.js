@@ -1,3 +1,6 @@
-export const selectFilter = state => state.phoneBook.filter;
-export const selectContactsList = state => state.phoneBook.contacts;
-export const selectEditOpen = state => state.phoneBook.isEditOpen;
+export const selectFilter = state => {
+  console.log(state);
+  return state.filter;
+};
+export const selectContactsList = state => state.contacts;
+export const selectEditOpen = state => state.isEditOpen;

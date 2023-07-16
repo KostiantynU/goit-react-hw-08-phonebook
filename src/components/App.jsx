@@ -5,6 +5,8 @@ import SharedLayout from './SharedLayout/SharedLayout';
 import HomePage from 'pages/HomePage';
 import Contacts from 'pages/Contacts';
 import LogInPage from 'pages/LogInPage';
+import RegisterPage from 'pages/Register';
+import NotFoundPage from 'pages/NotFound';
 
 export function App() {
   return (
@@ -14,6 +16,8 @@ export function App() {
           <Route index element={<HomePage />} />
           <Route path="contacts" element={<Contacts />} />
           <Route path="login" element={<LogInPage />} />
+          <Route path="register" element={<RegisterPage />} />
+          <Route path="*" element={<NotFoundPage />} />
         </Route>
       </Routes>
     </AnimatePresence>
