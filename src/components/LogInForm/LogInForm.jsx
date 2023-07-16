@@ -35,26 +35,14 @@ function LogInForm() {
   return (
     <form onSubmit={formik.handleSubmit}>
       <label htmlFor="email">Enter your e-mail</label>
-      <input
-        type="email"
-        name="email"
-        onChange={formik.handleChange}
-        onBlur={formik.handleBlur}
-        value={formik.values.email}
-      />
+      <input type="email" name="email" {...formik.getFieldProps('email')} />
       {formik.touched.email && formik.errors.email ? (
         <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}>
           <div>{formik.errors.email}</div>
         </motion.div>
       ) : null}
       <label htmlFor="password">Enter password</label>
-      <input
-        type="password"
-        name="password"
-        onChange={formik.handleChange}
-        onBlur={formik.handleBlur}
-        value={formik.values.password}
-      />
+      <input type="password" name="password" {...formik.getFieldProps('password')} />
       {formik.touched.password && formik.errors.password ? (
         <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}>
           <div>{formik.errors.password}</div>
