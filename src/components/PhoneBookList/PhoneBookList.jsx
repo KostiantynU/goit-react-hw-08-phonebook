@@ -1,10 +1,10 @@
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { getContacts } from 'redux/operations';
-import { selectContactsList, selectFilter } from 'redux/selectors';
+import { getContacts } from 'redux/contacts/operations';
+import { selectContactsList, selectFilter } from 'redux/contacts/selectors';
 import { ListContacts, LoadingMessage } from './PhoneBookListStyled';
 import BookItem from 'components/PhoneBookListItem/PhoneBookListItem';
-import { useGetContactsQuery } from 'redux/contactsQuery';
+import { useGetContactsQuery } from 'redux/contacts/contactsQuery';
 import { motion } from 'framer-motion';
 
 function PhoneBookList() {
@@ -24,7 +24,7 @@ function PhoneBookList() {
 
   const filter = useSelector(selectFilter);
 
-  const filteredArray = contactsItemsRedux.filter(el =>
+  const filteredArray = contactsRTKQuery.filter(el =>
     el.nameContact.toLowerCase().includes(filter)
   );
 
@@ -36,17 +36,17 @@ function PhoneBookList() {
 
   return (
     <>
-      {errorRedux && (
+      {errorRTKQuery && (
         <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}>
-          <p>Some error hapenned: {errorRedux}</p>
+          <p>Some error hapenned: {errorRTKQuery}</p>
         </motion.div>
       )}
-      {isLoadingRedux && (
+      {isFetchingRTKQuery && (
         <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}>
           <LoadingMessage>Loading contacts...</LoadingMessage>
         </motion.div>
       )}
-      {!isLoadingRedux && (
+      {!isFetchingRTKQuery && (
         <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}>
           <ListContacts>
             {filteredArray.map(({ nameContact, id, numberContact }) => {

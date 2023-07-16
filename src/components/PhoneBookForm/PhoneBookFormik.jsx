@@ -3,7 +3,7 @@ import { motion } from 'framer-motion';
 // import { useDispatch, useSelector } from 'react-redux';
 // import { selectContactsList } from 'redux/selectors';
 // import { addContact } from 'redux/operations';
-import { useAddContactRTKQueryMutation, useGetContactsQuery } from 'redux/contactsQuery';
+import { useAddContactRTKQueryMutation, useGetContactsQuery } from 'redux/contacts/contactsQuery';
 import { BookForm, NameInput, AddBtn, Label, Div, TelInput, ErrorDiv } from './PhoneBookFormStyled';
 
 function PhoneBookForm() {

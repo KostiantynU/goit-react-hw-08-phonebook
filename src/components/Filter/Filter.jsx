@@ -1,6 +1,6 @@
 import { useSelector, useDispatch } from 'react-redux';
-import { selectFilter } from 'redux/selectors';
-import { changeFilter } from 'redux/contactsSlice';
+import { selectFilter } from 'redux/contacts/selectors';
+import { changeFilter } from 'redux/contacts/contactsSlice';
 import { SearchInput, Paragraph } from '../PhoneBookForm/PhoneBookFormStyled';
 
 function Filter() {

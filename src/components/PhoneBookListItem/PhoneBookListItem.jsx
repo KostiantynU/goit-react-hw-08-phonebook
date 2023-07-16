@@ -1,9 +1,9 @@
 import PropTypes from 'prop-types';
 import { useSelector } from 'react-redux';
 // import { deleteContact } from 'redux/operations';
-import { useDeleteContactRTKQueryMutation } from 'redux/contactsQuery';
+import { useDeleteContactRTKQueryMutation } from 'redux/contacts/contactsQuery';
 // import { changeEditOpen } from 'redux/contactsSlice';
-import { selectEditOpen } from 'redux/selectors';
+import { selectEditOpen } from 'redux/contacts/selectors';
 import { PhoneBookListItem, NameSpan, TelSpan } from './PhoneBookListItemStyled';
 import { ListBtn } from 'components/PhoneBookForm/PhoneBookFormStyled';
 import EditContact from 'components/EditContact/EditContact';
