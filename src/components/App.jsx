@@ -1,37 +1,21 @@
 import React from 'react';
-import { Container, MainTitle, WrapperForContent, AddDiv, FilterListDiv } from './AppStyled';
-import { Title } from './PhoneBookList/PhoneBookListStyled';
-import PhoneBookForm from './PhoneBookForm/PhoneBookFormik';
-import PhoneBookList from './PhoneBookList/PhoneBookList';
-import Filter from './Filter/Filter';
-import { AppBar } from './AppBar/AppBar';
+import { Routes, Route } from 'react-router-dom';
 import { AnimatePresence } from 'framer-motion';
-import { motion } from 'framer-motion';
-
+import SharedLayout from './SharedLayout/SharedLayout';
 import HomePage from 'pages/HomePage';
+import Contacts from 'pages/Contacts';
+import LogInPage from 'pages/LogInPage';
 
 export function App() {
   return (
     <AnimatePresence>
-      <Container>
-        <AppBar />
-        <MainTitle>Phonebook</MainTitle>
-        <main>
-          <WrapperForContent>
-            <AddDiv>
-              <Title>Add contact</Title>
-              <PhoneBookForm />
-            </AddDiv>
-            <FilterListDiv>
-              <Title>Contacts</Title>
-              <Filter />
-              <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}>
-                <PhoneBookList />
-              </motion.div>
-            </FilterListDiv>
-          </WrapperForContent>
-        </main>
-      </Container>
+      <Routes>
+        <Route path="/" element={<SharedLayout />}>
+          <Route index element={<HomePage />} />
+          <Route path="contacts" element={<Contacts />} />
+          <Route path="login" element={<LogInPage />} />
+        </Route>
+      </Routes>
     </AnimatePresence>
   );
 }

@@ -1,10 +1,5 @@
 import styled from 'styled-components';
-export const Container = styled.div`
-  width: 90vw;
-  margin-left: auto;
-  margin-right: auto;
-  padding: 5px;
-`;
+
 export const WrapperForContent = styled.div`
   display: flex;
   justify-content: space-between;
@@ -20,4 +15,3 @@ export const FilterListDiv = styled.div`
 export const MainTitle = styled.h1`
   margin: 0.2rem;
 `;
-export const Title = styled(MainTitle);

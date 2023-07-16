@@ -1,4 +1,5 @@
 import { useFormik } from 'formik';
+import { motion } from 'framer-motion';
 // import { useDispatch, useSelector } from 'react-redux';
 // import { selectContactsList } from 'redux/selectors';
 // import { addContact } from 'redux/operations';
@@ -75,7 +76,9 @@ function PhoneBookForm() {
           value={formik.values.nameContact}
         />
         {formik.touched.nameContact && formik.errors.nameContact ? (
-          <ErrorDiv>{formik.errors.nameContact}</ErrorDiv>
+          <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}>
+            <ErrorDiv>{formik.errors.nameContact}</ErrorDiv>
+          </motion.div>
         ) : null}
 
         <Label htmlFor="numberContact">Number</Label>
@@ -90,7 +93,9 @@ function PhoneBookForm() {
           value={formik.values.numberContact}
         />
         {formik.touched.numberContact && formik.errors.numberContact ? (
-          <ErrorDiv>{formik.errors.numberContact}</ErrorDiv>
+          <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}>
+            <ErrorDiv>{formik.errors.numberContact}</ErrorDiv>
+          </motion.div>
         ) : null}
 
         <AddBtn type="submit">Submit</AddBtn>

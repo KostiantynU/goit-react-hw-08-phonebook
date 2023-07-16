@@ -8,11 +8,11 @@ import './index.css';
 import 'modern-normalize/modern-normalize.css';
 
 ReactDOM.createRoot(document.getElementById('root')).render(
-  <BrowserRouter basename="goit-react-hw-08-phonebook">
-    <React.StrictMode>
+  <React.StrictMode>
+    <BrowserRouter basename="goit-react-hw-08-phonebook">
       <Provider store={store}>
         <App />
       </Provider>
-    </React.StrictMode>
-  </BrowserRouter>
+    </BrowserRouter>
+  </React.StrictMode>
 );
