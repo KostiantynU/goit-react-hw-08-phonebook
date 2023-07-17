@@ -21,8 +21,8 @@ const RegisterFormStyled = () => {
       errors.password = 'Invalid password';
     }
 
-    if (!values.username) {
-      errors.username = 'Required';
+    if (!values.name) {
+      errors.name = 'Required';
     }
 
     return errors;
