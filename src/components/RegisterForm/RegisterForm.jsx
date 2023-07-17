@@ -1,9 +1,12 @@
 import { useFormik } from 'formik';
+import { register } from 'redux/auth/operations';
 import { motion } from 'framer-motion';
 import { AddBtn, NameInput } from 'components/PhoneBookForm/PhoneBookFormStyled';
 import { LogInFormStyled } from 'components/LogInForm/LogInFormStyled';
+import { useDispatch } from 'react-redux';
 
 const RegisterFormStyled = () => {
+  const dispatch = useDispatch();
   const validate = values => {
     const errors = {};
     if (!values.email) {
@@ -14,12 +17,9 @@ const RegisterFormStyled = () => {
 
     if (!values.password) {
       errors.password = 'Required';
+    } else if (!/^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.{8,})/i.test(values.password)) {
+      errors.password = 'Invalid password';
     }
-    // else if (
-    //   !/^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*])(?=.{8,})/i.test(values.password)
-    // ) {
-    //   errors.password = 'Invalid password';
-    // }
 
     if (!values.username) {
       errors.username = 'Required';
@@ -36,7 +36,9 @@ const RegisterFormStyled = () => {
     },
     validate,
     onSubmit: values => {
-      console.log(values);
+      const newUser = { ...values };
+      dispatch(register(newUser));
+      formik.handleReset();
     },
   });
 
@@ -62,6 +64,7 @@ const RegisterFormStyled = () => {
           <div>{formik.errors.email}</div>
         </motion.div>
       ) : null}
+
       <label htmlFor="password">Enter password</label>
       <NameInput
         type="password"
@@ -74,8 +77,9 @@ const RegisterFormStyled = () => {
           <div>{formik.errors.password}</div>
         </motion.div>
       ) : null}
+
       <AddBtn type="submit" padding="10px 15px">
-        LogIn!
+        Register!
       </AddBtn>
     </LogInFormStyled>
   );

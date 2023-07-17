@@ -3,20 +3,33 @@ import { fetchContactsWB, addContactWB, deleteContactWB } from './operationsWith
 import { logOut } from 'redux/auth/operations';
 
 const handlePending = state => {
-  state.isLoading = true;
+  state.phonebook.isLoading = true;
 };
 const handleReject = (state, action) => {
-  state.isLoading = false;
-  state.isError = action.payload;
+  state.phonebook.isLoading = false;
+  state.phonebook.isError = action.payload;
 };
 
 const contactsSliceWB = createSlice({
   name: 'contactsSliceWB',
   initialState: {
-    items: [],
-    isLoading: false,
-    isError: null,
+    phonebook: {
+      items: [],
+      isLoading: false,
+      isError: null,
+    },
+    filter: '',
+    isEditOpen: false,
   },
+  reducers: {
+    changeEditOpen(state) {
+      state.isEditOpen = !state.isEditOpen;
+    },
+    changeFilter(state, action) {
+      state.filter = action.payload;
+    },
+  },
+
   extraReducers: {
     [fetchContactsWB.pending]: handlePending,
     [addContactWB.pending]: handlePending,
@@ -25,27 +38,28 @@ const contactsSliceWB = createSlice({
     [addContactWB.rejected]: handleReject,
     [deleteContactWB.rejected]: handleReject,
     [fetchContactsWB.fulfilled](state, action) {
-      state.isLoading = false;
-      state.isError = null;
-      state.items = action.payload;
+      state.phonebook.isLoading = false;
+      state.phonebook.isError = null;
+      state.phonebook.items = action.payload;
     },
     [addContactWB.fulfilled](state, action) {
-      state.isLoading = false;
-      state.isError = null;
-      state.items.push(action.payload);
+      state.phonebook.isLoading = false;
+      state.phonebook.isError = null;
+      state.phonebook.items.push(action.payload);
     },
     [deleteContactWB.fulfilled](state, action) {
-      state.isLoading = false;
-      state.isError = null;
-      const indx = state.items.findIndex(contact => contact.id === action.payload.id);
-      state.items.splice(indx, 1);
+      state.phonebook.isLoading = false;
+      state.phonebook.isError = null;
+      const indx = state.phonebook.items.findIndex(contact => contact.id === action.payload.id);
+      state.phonebook.items.splice(indx, 1);
     },
     [logOut.fulfilled](state) {
-      state.isLoading = false;
-      state.isError = null;
-      state.items = [];
+      state.phonebook.isLoading = false;
+      state.phonebook.isError = null;
+      state.phonebook.items = [];
     },
   },
 });
 
+export const { changeFilter } = contactsSliceWB.reducer;
 export const contactsReducerWB = contactsSliceWB.reducer;

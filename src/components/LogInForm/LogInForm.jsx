@@ -1,8 +1,13 @@
 import { useFormik } from 'formik';
 import { motion } from 'framer-motion';
+import { logIn } from 'redux/auth/operations';
+import { useDispatch } from 'react-redux';
 import { AddBtn, NameInput } from 'components/PhoneBookForm/PhoneBookFormStyled';
 import { LogInFormStyled } from './LogInFormStyled';
+
 function LogInForm() {
+  const dispatch = useDispatch();
+
   const validate = values => {
     const errors = {};
     if (!values.email) {
@@ -32,6 +37,9 @@ function LogInForm() {
     validate,
     onSubmit: values => {
       console.log(values);
+      const logUser = { ...values };
+      dispatch(logIn(logUser));
+      formik.handleReset();
     },
   });
 
@@ -44,6 +52,7 @@ function LogInForm() {
           <div>{formik.errors.email}</div>
         </motion.div>
       ) : null}
+
       <label htmlFor="password">Enter password</label>
       <NameInput
         type="password"
@@ -56,6 +65,7 @@ function LogInForm() {
           <div>{formik.errors.password}</div>
         </motion.div>
       ) : null}
+
       <AddBtn type="submit" padding="10px 15px">
         LogIn!
       </AddBtn>

@@ -2,8 +2,6 @@ import { logIn, logOut, refreshUser, register } from './operations';
 
 const { createSlice } = require('@reduxjs/toolkit');
 
-const BASE_URL = 'https://connections-api.herokuapp.com/';
-
 const initialState = {
   user: { name: '', email: '' },
   token: null,

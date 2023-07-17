@@ -1,102 +1,94 @@
 import { useFormik } from 'formik';
+import { useDispatch, useSelector } from 'react-redux';
 import { motion } from 'framer-motion';
-// import { useDispatch, useSelector } from 'react-redux';
-// import { selectContactsList } from 'redux/selectors';
-// import { addContact } from 'redux/operations';
-import { useAddContactRTKQueryMutation, useGetContactsQuery } from 'redux/contacts/contactsQuery';
+import { selectContactsList } from 'redux/contacts/selectors';
+import { addContactWB } from 'redux/contacts/operationsWithBackend';
 import { BookForm, NameInput, AddBtn, Label, Div, TelInput, ErrorDiv } from './PhoneBookFormStyled';
 
 function PhoneBookForm() {
-  // const { items: contactsItems } = useSelector(selectContactsList);
-  // const dispatch = useDispatch();
-
-  const [addContactRTKQuery] = useAddContactRTKQueryMutation();
-  const { data: contactsItemsRTKQuery } = useGetContactsQuery();
+  const { items: contactsItems } = useSelector(selectContactsList);
+  const dispatch = useDispatch();
 
   const validate = values => {
     const errors = {};
-    if (!values.nameContact) {
-      errors.nameContact = 'Required';
-    } else if (
-      !/^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$/i.test(values.nameContact)
-    ) {
-      errors.nameContact = 'Invalid name';
+    if (!values.name) {
+      errors.name = 'Required';
+    } else if (!/^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$/i.test(values.name)) {
+      errors.name = 'Invalid name';
     }
 
-    if (!values.numberContact) {
-      errors.numberContact = 'Required';
+    if (!values.number) {
+      errors.number = 'Required';
     } else if (
       !/\+?\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}/i.test(
-        values.numberContact
+        values.number
       )
     ) {
-      errors.numberContact = 'Invalid number';
+      errors.number = 'Invalid number';
     }
 
     return errors;
   };
 
   const formik = useFormik({
-    initialValues: { nameContact: '', numberContact: '' },
+    initialValues: { name: '', number: '' },
     validate,
     onSubmit: values => {
       const newContact = {
-        nameContact: values.nameContact,
-        numberContact: values.numberContact,
+        name: values.name,
+        number: values.number,
       };
 
       if (
-        contactsItemsRTKQuery.some(el => {
-          return el.nameContact.toLowerCase().includes(newContact.nameContact.toLowerCase());
+        contactsItems.some(el => {
+          return el.name.toLowerCase().includes(newContact.name.toLowerCase());
         })
       ) {
-        values.nameContact = '';
-        values.numberContact = '';
-        return alert(`${newContact.nameContact} is already in list!`);
+        formik.handleReset();
+        return alert(`${newContact.name} is already in list!`);
       }
 
-      addContactRTKQuery(newContact);
-      values.nameContact = '';
-      values.numberContact = '';
+      dispatch(addContactWB(newContact));
+      formik.handleReset();
     },
   });
 
   return (
     <BookForm onSubmit={formik.handleSubmit}>
       <Div>
-        <Label htmlFor="nameContact">Name</Label>
+        <Label htmlFor="name">Name</Label>
         <NameInput
-          id="nameContact"
-          name="nameContact"
+          id="name"
+          name="name"
           type="text"
           title="Name may contain only letters, apostrophe, dash and spaces. For example Adrian, Jacob Mercer, Charles de Batz de Castelmore d'Artagnan"
           required
           onChange={formik.handleChange}
           onBlur={formik.handleBlur}
-          value={formik.values.nameContact}
+          value={formik.values.name}
           formadd="300px"
         />
-        {formik.touched.nameContact && formik.errors.nameContact ? (
+        {formik.touched.name && formik.errors.name ? (
           <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}>
-            <ErrorDiv>{formik.errors.nameContact}</ErrorDiv>
+            <ErrorDiv>{formik.errors.name}</ErrorDiv>
           </motion.div>
         ) : null}
 
-        <Label htmlFor="numberContact">Number</Label>
+        <Label htmlFor="number">Number</Label>
         <TelInput
-          id="numberContact"
-          name="numberContact"
+          id="number"
+          name="number"
           type="tel"
           title="Name may contain only letters, apostrophe, dash and spaces. For example Adrian, Jacob Mercer, Charles de Batz de Castelmore d'Artagnan"
           required
           onChange={formik.handleChange}
           onBlur={formik.handleBlur}
-          value={formik.values.numberContact}
+          value={formik.values.number}
           formadd="300px"
         />
-        {formik.touched.numberContact && formik.errors.numberContact ? (
+        {formik.touched.number && formik.errors.number ? (
           <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}>
-            <ErrorDiv>{formik.errors.numberContact}</ErrorDiv>
+            <ErrorDiv>{formik.errors.number}</ErrorDiv>
           </motion.div>
         ) : null}
 
