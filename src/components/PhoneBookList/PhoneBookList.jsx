@@ -1,22 +1,12 @@
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-// import { getContacts } from 'redux/contacts/operations';
 import { fetchContactsWB } from 'redux/contacts/operationsWithBackend';
 import { selectContactsList, selectFilter } from 'redux/contacts/selectors';
+import { motion } from 'framer-motion';
 import { ListContacts, LoadingMessage } from './PhoneBookListStyled';
 import BookItem from 'components/PhoneBookListItem/PhoneBookListItem';
-// import { useGetContactsQuery } from 'redux/contacts/contactsQuery';
-import { motion } from 'framer-motion';
 
 function PhoneBookList() {
-  // const {
-  //   data: contactsRTKQuery = [],
-  //   error: errorRTKQuery,
-  //   isFetching: isFetchingRTKQuery,
-  // } = useGetContactsQuery({
-  //   // skip: true, // pokemanName === ""
-  // });
-
   const {
     items: contactsItemsRedux = [],
     isLoading: isLoadingRedux,

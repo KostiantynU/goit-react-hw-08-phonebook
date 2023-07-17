@@ -5,11 +5,6 @@ import { useDispatch, useSelector } from 'react-redux';
 import { refreshUser } from 'redux/auth/operations';
 import { selectIsRefreshing } from 'redux/auth/selectors';
 import SharedLayout from './SharedLayout/SharedLayout';
-// import HomePage from 'pages/HomePage';
-// import Contacts from 'pages/Contacts';
-// import LogInPage from 'pages/LogInPage';
-// import RegisterPage from 'pages/Register';
-// import NotFoundPage from 'pages/NotFound';
 import PrivateRoute from './PrivateRoute';
 import PublicRoute from './PublicRoute';
 

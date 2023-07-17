@@ -32,7 +32,7 @@ const RegisterFormStyled = () => {
     initialValues: {
       email: '',
       password: '',
-      username: '',
+      name: '',
     },
     validate,
     onSubmit: values => {
@@ -44,16 +44,11 @@ const RegisterFormStyled = () => {
 
   return (
     <LogInFormStyled onSubmit={formik.handleSubmit}>
-      <label htmlFor="username">Enter your name</label>
-      <NameInput
-        type="text"
-        name="username"
-        {...formik.getFieldProps('username')}
-        formadd="400px"
-      />
-      {formik.touched.username && formik.errors.username ? (
+      <label htmlFor="name">Enter your name</label>
+      <NameInput type="text" name="name" {...formik.getFieldProps('name')} formadd="400px" />
+      {formik.touched.name && formik.errors.name ? (
         <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}>
-          <div>{formik.errors.username}</div>
+          <div>{formik.errors.name}</div>
         </motion.div>
       ) : null}
 
