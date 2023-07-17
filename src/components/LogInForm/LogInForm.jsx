@@ -36,7 +36,6 @@ function LogInForm() {
     },
     validate,
     onSubmit: values => {
-      console.log(values);
       const logUser = { ...values };
       dispatch(logIn(logUser));
       formik.handleReset();

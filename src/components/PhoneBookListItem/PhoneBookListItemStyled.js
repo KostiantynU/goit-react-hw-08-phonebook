@@ -1,8 +1,7 @@
 import styled from 'styled-components';
 export const PhoneBookListItem = styled.li`
   position: relative;
-  width: 90%;
-  height: auto;
+
   display: flex;
   justify-content: space-between;
   align-items: center;

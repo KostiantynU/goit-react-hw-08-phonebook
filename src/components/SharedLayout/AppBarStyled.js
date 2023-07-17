@@ -47,8 +47,12 @@ export const LogInMenu = styled.div`
   gap: 0.5rem;
 `;
 export const StyledNavLink = styled(NavLink)`
+  display: block;
   padding: 20px 25px;
   border-radius: 10px;
+  width: ${props => (props.width ? `${props.width}` : '')};
+  margin-left: ${props => (props.marginleft ? 'auto' : '0rem')};
+  margin-right: ${props => (props.marginright ? 'auto' : '0rem')};
   transition: background 500ms linear 0ms, color 500ms linear 0ms, box-shadow 500ms linear 0ms;
   text-decoration: none;
   border: 1px solid rgb(46, 191, 145);

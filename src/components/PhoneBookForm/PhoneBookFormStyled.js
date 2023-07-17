@@ -42,8 +42,36 @@ export const AddBtn = styled.button`
     background: rgba(131, 96, 195, 0.74);
   }
 `;
-export const TelInput = styled(NameInput)``;
-export const SearchInput = styled(NameInput)``;
+export const TelInput = styled.input`
+  width: ${props => (props.formadd ? `${props.formadd}` : '100%')};
+  height: 30px;
+  margin: 0.5rem;
+  margin-bottom: 2rem;
+  padding: 0.2rem;
+  background: linear-gradient(310deg, rgb(131, 96, 195), rgb(46, 191, 145));
+  outline: none;
+  &:hover,
+  &:focus {
+    box-shadow: 0px 0px 8px 3px rgba(131, 96, 195, 0.75);
+    -webkit-box-shadow: 0px 0px 8px 3px rgba(131, 96, 195, 0.75);
+    -moz-box-shadow: 0px 0px 8px 3px rgba(131, 96, 195, 0.75);
+  }
+`;
+export const SearchInput = styled.input`
+  width: ${props => (props.formadd ? `${props.formadd}` : '100%')};
+  height: 30px;
+  margin: 0.5rem;
+  margin-bottom: 2rem;
+  padding: 0.2rem;
+  background: linear-gradient(310deg, rgb(131, 96, 195), rgb(46, 191, 145));
+  outline: none;
+  &:hover,
+  &:focus {
+    box-shadow: 0px 0px 8px 3px rgba(131, 96, 195, 0.75);
+    -webkit-box-shadow: 0px 0px 8px 3px rgba(131, 96, 195, 0.75);
+    -moz-box-shadow: 0px 0px 8px 3px rgba(131, 96, 195, 0.75);
+  }
+`;
 export const ListBtn = styled(AddBtn)`
   margin: 0;
   padding: 0.3rem;

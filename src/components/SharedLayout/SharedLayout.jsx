@@ -1,5 +1,7 @@
 import { Suspense } from 'react';
 import { Outlet } from 'react-router-dom';
+import { logOut } from 'redux/auth/operations';
+import { useDispatch, useSelector } from 'react-redux';
 import {
   Header,
   NavigationMenu,
@@ -10,8 +12,13 @@ import {
   LogOutBtn,
   Container,
 } from './AppBarStyled';
+import { selectIsLoggedIn, selectUser } from 'redux/auth/selectors';
 
 function SharedLayout() {
+  const dispatch = useDispatch();
+  const isLoggedIn = useSelector(selectIsLoggedIn);
+  const userObj = useSelector(selectUser);
+
   return (
     <Container>
       <Header>
@@ -28,8 +35,10 @@ function SharedLayout() {
           </StyledUserLink>
         </LogInMenu>
         <UserMenu>
-          <p>Greetings User!</p>
-          <LogOutBtn type="button">LogOut</LogOutBtn>
+          {isLoggedIn ? <p>Greetings {userObj.name}!</p> : <p>Greetings!</p>}
+          <LogOutBtn type="button" onClick={() => dispatch(logOut())} disabled={!isLoggedIn}>
+            LogOut
+          </LogOutBtn>
         </UserMenu>
       </Header>
       <main>
