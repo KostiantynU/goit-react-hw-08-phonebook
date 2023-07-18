@@ -13,7 +13,7 @@ function Filter() {
       <SearchInput
         onChange={evt => dispatch(changeFilter(evt.target.value.toLowerCase().trim()))}
         value={filterValue}
-        formadd="90%"
+        $formadd="90%"
       />
     </>
   );

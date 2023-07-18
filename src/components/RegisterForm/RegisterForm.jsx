@@ -45,7 +45,7 @@ const RegisterFormStyled = () => {
   return (
     <LogInFormStyled onSubmit={formik.handleSubmit}>
       <label htmlFor="name">Enter your name</label>
-      <NameInput type="text" name="name" {...formik.getFieldProps('name')} formadd="400px" />
+      <NameInput type="text" name="name" {...formik.getFieldProps('name')} $formadd="400px" />
       {formik.touched.name && formik.errors.name ? (
         <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}>
           <div>{formik.errors.name}</div>
@@ -53,7 +53,7 @@ const RegisterFormStyled = () => {
       ) : null}
 
       <label htmlFor="email">Enter your e-mail</label>
-      <NameInput type="email" name="email" {...formik.getFieldProps('email')} formadd="400px" />
+      <NameInput type="email" name="email" {...formik.getFieldProps('email')} $formadd="400px" />
       {formik.touched.email && formik.errors.email ? (
         <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}>
           <div>{formik.errors.email}</div>
@@ -65,7 +65,7 @@ const RegisterFormStyled = () => {
         type="password"
         name="password"
         {...formik.getFieldProps('password')}
-        formadd="400px"
+        $formadd="400px"
       />
       {formik.touched.password && formik.errors.password ? (
         <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}>

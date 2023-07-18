@@ -66,7 +66,7 @@ function PhoneBookForm() {
           onChange={formik.handleChange}
           onBlur={formik.handleBlur}
           value={formik.values.name}
-          formadd="300px"
+          $formadd="300px"
         />
         {formik.touched.name && formik.errors.name ? (
           <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}>
@@ -84,7 +84,7 @@ function PhoneBookForm() {
           onChange={formik.handleChange}
           onBlur={formik.handleBlur}
           value={formik.values.number}
-          formadd="300px"
+          $formadd="300px"
         />
         {formik.touched.number && formik.errors.number ? (
           <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}>

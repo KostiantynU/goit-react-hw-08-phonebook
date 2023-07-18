@@ -6,14 +6,20 @@ export const Div = styled.div`
   border: 1px solid rgb(46, 191, 145);
   border-radius: 5px;
 `;
-export const NameInput = styled.input`
-  width: ${props => (props.formadd ? `${props.formadd}` : '100%')};
+export const NameInput = styled.input.attrs(props => ({
+  // we can define static props
+  // type: "text",
+  // or we can define dynamic ones
+  $formadd: props.$formadd || '100%',
+}))`
+  width: ${props => props.$formadd};
   height: 30px;
   margin: 0.5rem;
   margin-bottom: 2rem;
   padding: 0.2rem;
   background: linear-gradient(310deg, rgb(131, 96, 195), rgb(46, 191, 145));
   outline: none;
+  border-radius: 10px;
   &:hover,
   &:focus {
     box-shadow: 0px 0px 8px 3px rgba(131, 96, 195, 0.75);
@@ -42,14 +48,20 @@ export const AddBtn = styled.button`
     background: rgba(131, 96, 195, 0.74);
   }
 `;
-export const TelInput = styled.input`
-  width: ${props => (props.formadd ? `${props.formadd}` : '100%')};
+export const TelInput = styled.input.attrs(props => ({
+  // we can define static props
+  // type: "text",
+  // or we can define dynamic ones
+  $formadd: props.$formadd || '100%',
+}))`
+  width: ${props => props.$formadd};
   height: 30px;
   margin: 0.5rem;
   margin-bottom: 2rem;
   padding: 0.2rem;
   background: linear-gradient(310deg, rgb(131, 96, 195), rgb(46, 191, 145));
   outline: none;
+  border-radius: 10px;
   &:hover,
   &:focus {
     box-shadow: 0px 0px 8px 3px rgba(131, 96, 195, 0.75);
@@ -57,14 +69,20 @@ export const TelInput = styled.input`
     -moz-box-shadow: 0px 0px 8px 3px rgba(131, 96, 195, 0.75);
   }
 `;
-export const SearchInput = styled.input`
-  width: ${props => (props.formadd ? `${props.formadd}` : '100%')};
+export const SearchInput = styled.input.attrs(props => ({
+  // we can define static props
+  // type: "text",
+  // or we can define dynamic ones
+  $formadd: props.$formadd || '100%',
+}))`
+  width: ${props => props.$formadd};
   height: 30px;
   margin: 0.5rem;
   margin-bottom: 2rem;
   padding: 0.2rem;
   background: linear-gradient(310deg, rgb(131, 96, 195), rgb(46, 191, 145));
   outline: none;
+  border-radius: 10px;
   &:hover,
   &:focus {
     box-shadow: 0px 0px 8px 3px rgba(131, 96, 195, 0.75);
