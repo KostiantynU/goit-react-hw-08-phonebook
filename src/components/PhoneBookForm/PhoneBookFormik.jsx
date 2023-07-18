@@ -1,12 +1,12 @@
 import { useFormik } from 'formik';
 import { useDispatch, useSelector } from 'react-redux';
 import { motion } from 'framer-motion';
-import { selectContactsList } from 'redux/contacts/selectors';
+import { selectItems } from 'redux/contacts/selectors';
 import { addContactWB } from 'redux/contacts/operationsWithBackend';
 import { BookForm, NameInput, AddBtn, Label, Div, TelInput, ErrorDiv } from './PhoneBookFormStyled';
 
 function PhoneBookForm() {
-  const { items: contactsItems } = useSelector(selectContactsList);
+  const contactsItems = useSelector(selectItems);
   const dispatch = useDispatch();
 
   const validate = values => {

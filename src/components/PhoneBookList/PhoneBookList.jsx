@@ -1,17 +1,20 @@
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchContactsWB } from 'redux/contacts/operationsWithBackend';
-import { selectContactsList, selectFilter } from 'redux/contacts/selectors';
+import {
+  selectFilter,
+  selectIsError,
+  selectIsLoading,
+  selectItems,
+} from 'redux/contacts/selectors';
 import { motion } from 'framer-motion';
 import { ListContacts, LoadingMessage } from './PhoneBookListStyled';
 import BookItem from 'components/PhoneBookListItem/PhoneBookListItem';
 
 function PhoneBookList() {
-  const {
-    items: contactsItemsRedux = [],
-    isLoading: isLoadingRedux,
-    isError: errorRedux,
-  } = useSelector(selectContactsList);
+  const contactsItemsRedux = useSelector(selectItems);
+  const isLoadingRedux = useSelector(selectIsLoading);
+  const isErrorRedux = useSelector(selectIsError);
 
   const filter = useSelector(selectFilter);
 
@@ -25,9 +28,9 @@ function PhoneBookList() {
 
   return (
     <>
-      {errorRedux && (
+      {isErrorRedux && (
         <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}>
-          <p>Some error hapenned: {errorRedux}</p>
+          <p>Some error hapenned: {isErrorRedux}</p>
         </motion.div>
       )}
       {isLoadingRedux && (
@@ -37,11 +40,15 @@ function PhoneBookList() {
       )}
       {!isLoadingRedux && (
         <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}>
-          <ListContacts>
-            {filteredArray.map(({ name, id, number }) => {
-              return <BookItem key={id} name={name} number={number} id={id} />;
-            })}
-          </ListContacts>
+          {contactsItemsRedux.length ? (
+            <ListContacts>
+              {filteredArray.map(({ name, id, number }) => {
+                return <BookItem key={id} name={name} number={number} id={id} />;
+              })}
+            </ListContacts>
+          ) : (
+            <p>Your list of contacts is empty!</p>
+          )}
         </motion.div>
       )}
     </>

@@ -41,6 +41,8 @@ export const NavigationMenu = styled.nav`
   gap: 1rem;
 `;
 export const LogInMenu = styled.div`
+  margin-left: auto;
+  margin-right: auto;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -96,4 +98,8 @@ export const LogOutBtn = styled(AddBtn)`
     -webkit-box-shadow: 0px 0px 3px 2px rgba(131, 96, 195, 0.75);
     -moz-box-shadow: 0px 0px 3px 2px rgba(131, 96, 195, 0.75);
   }
+`;
+export const UserSpan = styled.span`
+  margin: 0.5rem;
+  font-size: 18px;
 `;

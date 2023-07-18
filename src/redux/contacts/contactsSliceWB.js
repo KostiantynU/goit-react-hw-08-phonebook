@@ -61,5 +61,5 @@ const contactsSliceWB = createSlice({
   },
 });
 
-export const { changeFilter } = contactsSliceWB.reducer;
+export const { changeFilter } = contactsSliceWB.actions;
 export const contactsReducerWB = contactsSliceWB.reducer;

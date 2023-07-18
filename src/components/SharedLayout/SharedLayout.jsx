@@ -11,6 +11,7 @@ import {
   UserMenu,
   LogOutBtn,
   Container,
+  UserSpan,
 } from './AppBarStyled';
 import { selectIsLoggedIn, selectUser } from 'redux/auth/selectors';
 
@@ -22,24 +23,36 @@ function SharedLayout() {
   return (
     <Container>
       <Header>
-        <NavigationMenu>
-          <StyledNavLink to="/">Home</StyledNavLink>
-          <StyledNavLink to="/contacts">Contacts</StyledNavLink>
-        </NavigationMenu>
-        <LogInMenu>
-          <StyledUserLink to="/register" nav="nav">
-            Register
-          </StyledUserLink>
-          <StyledUserLink to="/login/" nav="">
-            LogIn
-          </StyledUserLink>
-        </LogInMenu>
-        <UserMenu>
-          {isLoggedIn ? <p>Greetings {userObj.name}!</p> : <p>Greetings!</p>}
-          <LogOutBtn type="button" onClick={() => dispatch(logOut())} disabled={!isLoggedIn}>
-            LogOut
-          </LogOutBtn>
-        </UserMenu>
+        {isLoggedIn && (
+          <NavigationMenu>
+            <StyledNavLink to="/">Home</StyledNavLink>
+            <StyledNavLink to="/contacts">Contacts</StyledNavLink>
+          </NavigationMenu>
+        )}
+        {!isLoggedIn && (
+          <LogInMenu>
+            <StyledUserLink to="/register" nav="nav">
+              Register
+            </StyledUserLink>
+            <StyledUserLink to="/login/" nav="">
+              LogIn
+            </StyledUserLink>
+          </LogInMenu>
+        )}
+        {isLoggedIn && (
+          <UserMenu>
+            {isLoggedIn ? (
+              <p>
+                Greetings <UserSpan>{userObj.name}</UserSpan>!
+              </p>
+            ) : (
+              <p>Greetings!</p>
+            )}
+            <LogOutBtn type="button" onClick={() => dispatch(logOut())} disabled={!isLoggedIn}>
+              LogOut
+            </LogOutBtn>
+          </UserMenu>
+        )}
       </Header>
       <main>
         <Suspense fallback={<p>Loading...</p>}>
