@@ -73,7 +73,7 @@ const RegisterFormStyled = () => {
         </motion.div>
       ) : null}
 
-      <AddBtn type="submit" padding="10px 15px">
+      <AddBtn type="submit" $padding="10px 15px">
         Register!
       </AddBtn>
     </LogInFormStyled>

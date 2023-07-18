@@ -65,7 +65,7 @@ function LogInForm() {
         </motion.div>
       ) : null}
 
-      <AddBtn type="submit" padding="10px 15px">
+      <AddBtn type="submit" $padding="10px 15px">
         LogIn!
       </AddBtn>
     </LogInFormStyled>

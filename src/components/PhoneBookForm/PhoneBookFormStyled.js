@@ -7,9 +7,6 @@ export const Div = styled.div`
   border-radius: 5px;
 `;
 export const NameInput = styled.input.attrs(props => ({
-  // we can define static props
-  // type: "text",
-  // or we can define dynamic ones
   $formadd: props.$formadd || '100%',
 }))`
   width: ${props => props.$formadd};
@@ -34,9 +31,11 @@ export const Label = styled.label`
 export const Paragraph = styled.p`
   margin: 0.5rem;
 `;
-export const AddBtn = styled.button`
+export const AddBtn = styled.button.attrs(props => ({
+  $padding: props.$padding || '5px',
+}))`
   margin: 0.5rem;
-  padding: ${props => (props.padding ? `${props.padding}` : '8px')};
+  padding: ${props => props.$padding};
   background: transparent;
   border-radius: 10px;
   border: 1px solid rgb(46, 191, 145);
