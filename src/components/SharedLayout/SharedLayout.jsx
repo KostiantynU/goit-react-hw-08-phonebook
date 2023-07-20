@@ -1,58 +1,21 @@
 import { Suspense } from 'react';
 import { Outlet } from 'react-router-dom';
-import { logOut } from 'redux/auth/operations';
-import { useDispatch, useSelector } from 'react-redux';
-import {
-  Header,
-  NavigationMenu,
-  LogInMenu,
-  StyledNavLink,
-  StyledUserLink,
-  UserMenu,
-  LogOutBtn,
-  Container,
-  UserSpan,
-} from './AppBarStyled';
-import { selectIsLoggedIn, selectUser } from 'redux/auth/selectors';
+import { useSelector } from 'react-redux';
+import { selectIsLoggedIn } from 'redux/auth/selectors';
+import { Header, Container } from './AppBarStyled';
+import LogInMenu from 'components/LogInMenu/LogInMenu';
+import NavigationMenu from 'components/NavigationMenu/NavigationMenu';
+import UserMenu from 'components/UserMenu/UserMenu';
 
 function SharedLayout() {
-  const dispatch = useDispatch();
   const isLoggedIn = useSelector(selectIsLoggedIn);
-  const userObj = useSelector(selectUser);
 
   return (
     <Container>
       <Header>
-        {isLoggedIn && (
-          <NavigationMenu>
-            <StyledNavLink to="/">Home</StyledNavLink>
-            <StyledNavLink to="/contacts">Contacts</StyledNavLink>
-          </NavigationMenu>
-        )}
-        {!isLoggedIn && (
-          <LogInMenu>
-            <StyledUserLink to="/register" nav="nav">
-              Register
-            </StyledUserLink>
-            <StyledUserLink to="/login/" nav="">
-              LogIn
-            </StyledUserLink>
-          </LogInMenu>
-        )}
-        {isLoggedIn && (
-          <UserMenu>
-            {isLoggedIn ? (
-              <p>
-                Greetings <UserSpan>{userObj.name}</UserSpan>!
-              </p>
-            ) : (
-              <p>Greetings!</p>
-            )}
-            <LogOutBtn type="button" onClick={() => dispatch(logOut())} disabled={!isLoggedIn}>
-              LogOut
-            </LogOutBtn>
-          </UserMenu>
-        )}
+        {isLoggedIn && <NavigationMenu />}
+        {!isLoggedIn && <LogInMenu />}
+        {isLoggedIn && <UserMenu />}
       </Header>
       <main>
         <Suspense fallback={<p>Loading...</p>}>

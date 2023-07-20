@@ -48,9 +48,6 @@ export const AddBtn = styled.button.attrs(props => ({
   }
 `;
 export const TelInput = styled.input.attrs(props => ({
-  // we can define static props
-  // type: "text",
-  // or we can define dynamic ones
   $formadd: props.$formadd || '100%',
 }))`
   width: ${props => props.$formadd};
@@ -60,7 +57,7 @@ export const TelInput = styled.input.attrs(props => ({
   padding: 0.2rem;
   background: linear-gradient(310deg, rgb(131, 96, 195), rgb(46, 191, 145));
   outline: none;
-  border-radius: 10px;
+  border-radius: 8px;
   &:hover,
   &:focus {
     box-shadow: 0px 0px 8px 3px rgba(131, 96, 195, 0.75);
@@ -69,9 +66,6 @@ export const TelInput = styled.input.attrs(props => ({
   }
 `;
 export const SearchInput = styled.input.attrs(props => ({
-  // we can define static props
-  // type: "text",
-  // or we can define dynamic ones
   $formadd: props.$formadd || '100%',
 }))`
   width: ${props => props.$formadd};
@@ -81,7 +75,7 @@ export const SearchInput = styled.input.attrs(props => ({
   padding: 0.2rem;
   background: linear-gradient(310deg, rgb(131, 96, 195), rgb(46, 191, 145));
   outline: none;
-  border-radius: 10px;
+  border-radius: 8px;
   &:hover,
   &:focus {
     box-shadow: 0px 0px 8px 3px rgba(131, 96, 195, 0.75);

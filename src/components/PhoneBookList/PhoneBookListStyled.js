@@ -4,6 +4,7 @@ export const Title = styled.h2`
   margin: 0.5rem;
 `;
 export const ListContacts = styled.ul`
+  position: relative;
   padding: 5px;
   margin-left: auto;
   margin-right: auto;

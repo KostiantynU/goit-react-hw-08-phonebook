@@ -2,6 +2,7 @@ import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchContactsWB } from 'redux/contacts/operationsWithBackend';
 import {
+  selectEditOpen,
   selectFilter,
   selectIsError,
   selectIsLoading,
@@ -10,11 +11,13 @@ import {
 import { motion } from 'framer-motion';
 import { ListContacts, LoadingMessage } from './PhoneBookListStyled';
 import BookItem from 'components/PhoneBookListItem/PhoneBookListItem';
+import EditContact from 'components/EditContact/EditContact';
 
 function PhoneBookList() {
   const contactsItemsRedux = useSelector(selectItems);
   const isLoadingRedux = useSelector(selectIsLoading);
   const isErrorRedux = useSelector(selectIsError);
+  const isEditOpen = useSelector(selectEditOpen);
 
   const filter = useSelector(selectFilter);
 
@@ -41,11 +44,13 @@ function PhoneBookList() {
       {!isLoadingRedux && (
         <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}>
           {contactsItemsRedux.length ? (
-            <ListContacts>
-              {filteredArray.map(({ name, id, number }) => {
-                return <BookItem key={id} name={name} number={number} id={id} />;
-              })}
-            </ListContacts>
+            <>
+              <ListContacts>
+                {filteredArray.map(({ name, id, number }) => {
+                  return <BookItem key={id} name={name} number={number} id={id} />;
+                })}
+              </ListContacts>
+            </>
           ) : (
             <p>Your list of contacts is empty!</p>
           )}
