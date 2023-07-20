@@ -1,4 +1,4 @@
-import { motion } from 'framer-motion';
+// import { motion } from 'framer-motion';
 import { ListBtn } from 'components/PhoneBookForm/PhoneBookFormStyled';
 import { EditContactForm, EditInput } from './EditContactStyled';
 
@@ -15,8 +15,8 @@ const EditContact = () => {
         style={{ postition: 'absolute' }}
       > */}
       <EditContactForm onSubmit={handleSubmit}>
-        <EditInput type="text" name="numberContact" />
-        <ListBtn>Change</ListBtn>
+        <EditInput type="text" name="number" $margin={'0'} $marginBottom={'0.1rem'} />
+        <ListBtn $padding={'5px'}>Change</ListBtn>
       </EditContactForm>
       {/* </motion.div> */}
     </>

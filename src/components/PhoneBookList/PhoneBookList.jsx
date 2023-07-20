@@ -2,7 +2,6 @@ import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchContactsWB } from 'redux/contacts/operationsWithBackend';
 import {
-  selectEditOpen,
   selectFilter,
   selectIsError,
   selectIsLoading,
@@ -11,13 +10,13 @@ import {
 import { motion } from 'framer-motion';
 import { ListContacts, LoadingMessage } from './PhoneBookListStyled';
 import BookItem from 'components/PhoneBookListItem/PhoneBookListItem';
-import EditContact from 'components/EditContact/EditContact';
+// import EditContact from 'components/EditContact/EditContact';
 
 function PhoneBookList() {
   const contactsItemsRedux = useSelector(selectItems);
   const isLoadingRedux = useSelector(selectIsLoading);
   const isErrorRedux = useSelector(selectIsError);
-  const isEditOpen = useSelector(selectEditOpen);
+  // const isEditOpen = useSelector(selectEditOpen);
 
   const filter = useSelector(selectFilter);
 

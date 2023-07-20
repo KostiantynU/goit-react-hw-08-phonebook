@@ -8,11 +8,13 @@ export const Div = styled.div`
 `;
 export const NameInput = styled.input.attrs(props => ({
   $formadd: props.$formadd || '100%',
+  $margin: props.$margin || '0.5rem',
+  $marginBottom: props.$marginBottom || '2rem',
 }))`
   width: ${props => props.$formadd};
   height: 30px;
-  margin: 0.5rem;
-  margin-bottom: 2rem;
+  margin: ${props => props.$margin};
+  margin-bottom: ${props => props.$marginBottom};
   padding: 0.2rem;
   background: linear-gradient(310deg, rgb(131, 96, 195), rgb(46, 191, 145));
   outline: none;
@@ -83,9 +85,11 @@ export const SearchInput = styled.input.attrs(props => ({
     -moz-box-shadow: 0px 0px 8px 3px rgba(131, 96, 195, 0.75);
   }
 `;
-export const ListBtn = styled(AddBtn)`
+export const ListBtn = styled(AddBtn).attrs(props => ({
+  $padding: props.$padding || '0.3rem',
+}))`
   margin: 0;
-  padding: 0.3rem;
+  padding: ${props => props.$padding};
 `;
 export const ErrorDiv = styled.div`
   margin: 0.2rem;
