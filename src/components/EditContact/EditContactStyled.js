@@ -1,12 +1,34 @@
 import styled from 'styled-components';
-import { NameInput } from 'components/PhoneBookForm/PhoneBookFormStyled';
+import { NameInput, ListBtn } from 'components/PhoneBookForm/PhoneBookFormStyled';
 export const EditContactForm = styled.form`
   display: flex;
-  position: absolute;
+  width: 100%;
+  justify-content: space-evenly;
+  /* position: absolute;
   left: 0;
-  top: -15%;
+  top: -50%; */
 `;
 export const EditInput = styled(NameInput)`
-  width: 100%;
+  width: 300px;
+  margin: 0;
   margin-bottom: 0;
+`;
+export const EditSubBtn = styled(ListBtn).attrs(props => ({
+  $padding: props.$padding || '0.3rem',
+}))`
+  background: rgb(131, 96, 195);
+  margin: 0;
+  padding: ${props => props.$padding};
+  color: black;
+  &:hover {
+    background: rgb(131, 96, 195);
+  }
+`;
+export const CloseBtn = styled(EditSubBtn)`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 20px;
+  height: 20px;
+  color: white;
 `;

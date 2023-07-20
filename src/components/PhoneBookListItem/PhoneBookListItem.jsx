@@ -24,7 +24,7 @@ function BookItem({ name, number, id }) {
       <ListBtn type="button" onClick={() => dispatch(deleteContactWB(id))}>
         {isDeleting ? 'Deleting' : 'Delete'}
       </ListBtn>
-      {isEditOpen && <EditContact data-id={id} />}
+      {isEditOpen && <EditContact handleChangeEditOpen={handleChangeEditOpen} />}
     </PhoneBookListItem>
   );
 }
