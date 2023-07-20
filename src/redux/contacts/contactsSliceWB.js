@@ -19,16 +19,8 @@ const contactsSliceWB = createSlice({
       isError: null,
     },
     filter: '',
-    isEditOpen: false,
-    idEditForm: '',
   },
   reducers: {
-    changeEditOpen(state) {
-      state.isEditOpen = !state.isEditOpen;
-    },
-    changeIdEditForm(state, action) {
-      state.idEditForm = action.payload;
-    },
     changeFilter(state, action) {
       state.filter = action.payload;
     },
@@ -65,5 +57,5 @@ const contactsSliceWB = createSlice({
   },
 });
 
-export const { changeFilter, changeEditOpen, changeIdEditForm } = contactsSliceWB.actions;
+export const { changeFilter } = contactsSliceWB.actions;
 export const contactsReducerWB = contactsSliceWB.reducer;

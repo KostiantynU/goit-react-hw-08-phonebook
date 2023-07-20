@@ -8,4 +8,5 @@ export const EditContactForm = styled.form`
 `;
 export const EditInput = styled(NameInput)`
   width: 100%;
+  margin-bottom: 0;
 `;

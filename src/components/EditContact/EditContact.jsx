@@ -15,7 +15,7 @@ const EditContact = () => {
         style={{ postition: 'absolute' }}
       > */}
       <EditContactForm onSubmit={handleSubmit}>
-        <EditInput type="text" name="number" $margin={'0'} $marginBottom={'0.1rem'} />
+        <EditInput type="text" name="number" $margin={'0'} />
         <ListBtn $padding={'5px'}>Change</ListBtn>
       </EditContactForm>
       {/* </motion.div> */}
