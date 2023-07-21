@@ -1,40 +1,46 @@
 import { useFormik } from 'formik';
 import { useDispatch, useSelector } from 'react-redux';
 import { selectItems } from 'redux/contacts/selectors';
+import { updateUser } from 'redux/contacts/operationsWithBackend';
 import { motion } from 'framer-motion';
 import { EditContactForm, EditInput, CloseBtn, EditSubBtn } from './EditContactStyled';
 import { ErrorDiv } from 'components/PhoneBookForm/PhoneBookFormStyled';
 
-const EditContact = ({ handleChangeEditOpen }) => {
+const EditContact = ({ handleChangeEditOpen, userId }) => {
   const contactsItems = useSelector(selectItems);
   const dispatch = useDispatch();
+  const existingUser = contactsItems.find(contact => contact.id === userId);
 
   const validate = values => {
     const errors = {};
-    if (!values.name) {
-      errors.name = 'Required';
-    } else if (!/^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$/i.test(values.name)) {
+    // if (!values.name) {
+    //   errors.name = 'Required';
+    // } else
+    if (!/^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$/i.test(values.name)) {
       errors.name = 'Invalid name';
     }
 
-    if (!values.number) {
-      errors.number = 'Required';
-    } else if (
+    // if (!values.number) {
+    //   errors.number = 'Required';
+    // } else
+    if (
       !/\+?\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}/i.test(
         values.number
       )
-    ) {
-      errors.number = 'Invalid number';
-    }
+    )
+      // {
+      //   errors.number = 'Invalid number';
+      // }
 
-    return errors;
+      return errors;
   };
 
   const editFormik = useFormik({
-    initialValues: { name: '', number: '' },
+    initialValues: { name: existingUser.name, number: existingUser.number },
     validate,
     onSubmit: values => {
       const updContact = {
+        id: userId,
         name: values.name,
         number: values.number,
       };
@@ -48,8 +54,9 @@ const EditContact = ({ handleChangeEditOpen }) => {
         return alert(`${updContact.name} is already in list!`);
       }
 
-      // dispatch(addContactWB(updContact));
+      dispatch(updateUser(updContact));
       editFormik.handleReset();
+      handleChangeEditOpen();
     },
   });
 
@@ -59,7 +66,18 @@ const EditContact = ({ handleChangeEditOpen }) => {
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         exit={{ opacity: 0 }}
-        style={{ position: 'absolute', left: '0', top: '-85%', width: '100%' }}
+        style={{
+          position: 'absolute',
+          left: '0',
+          top: '-90%',
+          width: '100%',
+          height: '100%',
+          display: 'flex',
+          alignItems: 'center',
+          borderRadius: '8px',
+          // background: 'rgb(46, 191, 145)',
+          background: 'linear-gradient(310deg, rgb(46, 191, 145), rgb(131, 96, 195))',
+        }}
       >
         <EditContactForm onSubmit={editFormik.handleSubmit}>
           <EditInput

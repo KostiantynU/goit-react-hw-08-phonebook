@@ -1,6 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit';
 import { fetchContactsWB, addContactWB, deleteContactWB } from './operationsWithBackend';
 import { logOut } from 'redux/auth/operations';
+import { updateUser } from './operationsWithBackend';
 
 const handlePending = state => {
   state.phonebook.isLoading = true;
@@ -54,8 +55,12 @@ const contactsSliceWB = createSlice({
       state.phonebook.isError = null;
       state.phonebook.items = [];
     },
+    [updateUser.fulfilled](state, action) {
+      const indx = state.phonebook.items.findIndex(contact => contact.id === action.payload.id);
+      state.phonebook.items.splice(indx, 1, action.payload);
+    },
   },
 });
 
-export const { changeFilter } = contactsSliceWB.actions;
+export const { changeFilter, updateUserLocal } = contactsSliceWB.actions;
 export const contactsReducerWB = contactsSliceWB.reducer;

@@ -4,6 +4,7 @@ export const EditContactForm = styled.form`
   display: flex;
   width: 100%;
   justify-content: space-evenly;
+  align-items: center;
   /* position: absolute;
   left: 0;
   top: -50%; */
