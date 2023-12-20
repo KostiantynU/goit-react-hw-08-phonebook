@@ -1,5 +1,5 @@
 import { useFormik } from 'formik';
-import { register } from 'redux/auth/operations';
+import { register } from 'redux/auth/authOperations';
 import { motion } from 'framer-motion';
 import { AddBtn, NameInput } from 'components/PhoneBookForm/PhoneBookFormStyled';
 import { LogInFormStyled } from 'components/LogInForm/LogInFormStyled';

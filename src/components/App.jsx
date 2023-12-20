@@ -2,7 +2,7 @@ import React, { lazy, useEffect } from 'react';
 import { Routes, Route } from 'react-router-dom';
 import { AnimatePresence } from 'framer-motion';
 import { useDispatch, useSelector } from 'react-redux';
-import { refreshUser } from 'redux/auth/operations';
+import { refreshUser } from 'redux/auth/authOperations';
 import { selectIsRefreshing } from 'redux/auth/selectors';
 import SharedLayout from './SharedLayout/SharedLayout';
 import PrivateRoute from './PrivateRoute';

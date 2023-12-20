@@ -1,4 +1,4 @@
-import { logIn, logOut, refreshUser, register } from './operations';
+import { logIn, logOut, refreshUser, register } from './authOperations';
 
 const { createSlice } = require('@reduxjs/toolkit');
 
@@ -38,6 +38,7 @@ const authSlice = createSlice({
     },
     [refreshUser.rejected](state) {
       state.isRefreshing = false;
+      state.token = null;
     },
   },
 });

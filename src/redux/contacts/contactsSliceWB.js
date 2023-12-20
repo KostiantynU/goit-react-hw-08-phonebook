@@ -1,6 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit';
 import { fetchContactsWB, addContactWB, deleteContactWB } from './operationsWithBackend';
-import { logOut } from 'redux/auth/operations';
+import { logOut } from 'redux/auth/authOperations';
 import { updateUser } from './operationsWithBackend';
 
 const handlePending = state => {
