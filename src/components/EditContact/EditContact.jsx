@@ -47,7 +47,10 @@ const EditContact = ({ handleChangeEditOpen, userId }) => {
 
       if (
         contactsItems.some(el => {
-          return el.name.toLowerCase().includes(updContact.name.toLowerCase());
+          return (
+            el.name.toLowerCase() === updContact.name.toLowerCase() &&
+            el.number === updContact.number
+          );
         })
       ) {
         editFormik.handleReset();
