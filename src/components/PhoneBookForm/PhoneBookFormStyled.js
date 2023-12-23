@@ -54,6 +54,7 @@ export const AddBtn = styled.button.attrs(props => ({
   border: 1px solid rgb(46, 191, 145);
   transition: background 500ms linear 0ms;
   color: inherit;
+  cursor: pointer;
   &:hover,
   &:focus {
     /* background: rgba(0, 216, 255, 074); */
