@@ -3,7 +3,7 @@ import { logIn, logOut, refreshUser, register } from './authOperations';
 const { createSlice } = require('@reduxjs/toolkit');
 
 const initialState = {
-  user: { name: '', email: '' },
+  user: { userName: '', userEmail: '' },
   token: null,
   isLoggedIn: false,
   isRefreshing: false,
@@ -22,9 +22,9 @@ const authSlice = createSlice({
   },
   extraReducers: {
     [register.fulfilled](state, action) {
-      state.user = action.payload.user;
-      state.token = action.payload.token;
-      state.isLoggedIn = true;
+      state.user = action.payload.newUser;
+      // state.token = action.payload.token;
+      // state.isLoggedIn = true;
     },
     [logIn.fulfilled](state, action) {
       state.user = action.payload.user;

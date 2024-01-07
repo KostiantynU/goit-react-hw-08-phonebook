@@ -10,14 +10,14 @@ function LogInForm() {
 
   const validate = values => {
     const errors = {};
-    if (!values.email) {
-      errors.email = 'Email is required';
-    } else if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(values.email)) {
-      errors.email = 'Invalid email';
+    if (!values.userEmail) {
+      errors.userEmail = 'Email is required';
+    } else if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(values.userEmail)) {
+      errors.userEmail = 'Invalid email';
     }
 
-    if (!values.password) {
-      errors.password = 'Password is required';
+    if (!values.userPassword) {
+      errors.userPassword = 'Password is required';
     }
     //   if (
     //   !/^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*])(?=.{8,})/i.test(values.password)
@@ -31,8 +31,8 @@ function LogInForm() {
 
   const formik = useFormik({
     initialValues: {
-      email: '',
-      password: '',
+      userEmail: '',
+      userPassword: '',
     },
     validate,
     onSubmit: values => {
@@ -44,24 +44,29 @@ function LogInForm() {
 
   return (
     <LogInFormStyled onSubmit={formik.handleSubmit}>
-      <label htmlFor="email">Enter your e-mail</label>
-      <NameInput type="email" name="email" {...formik.getFieldProps('email')} $formadd="400px" />
-      {formik.touched.email && formik.errors.email ? (
+      <label htmlFor="userEmail">Enter your e-mail</label>
+      <NameInput
+        type="email"
+        name="userEmail"
+        {...formik.getFieldProps('userEmail')}
+        $formadd="400px"
+      />
+      {formik.touched.userEmail && formik.errors.userEmail ? (
         <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}>
-          <div>{formik.errors.email}</div>
+          <div>{formik.errors.userEmail}</div>
         </motion.div>
       ) : null}
 
-      <label htmlFor="password">Enter password</label>
+      <label htmlFor="userPassword">Enter password</label>
       <NameInput
         type="password"
-        name="password"
-        {...formik.getFieldProps('password')}
+        name="userPassword"
+        {...formik.getFieldProps('userPassword')}
         $formadd="400px"
       />
-      {formik.touched.password && formik.errors.password ? (
+      {formik.touched.userPassword && formik.errors.userPassword ? (
         <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}>
-          <div>{formik.errors.password}</div>
+          <div>{formik.errors.userPassword}</div>
         </motion.div>
       ) : null}
 
