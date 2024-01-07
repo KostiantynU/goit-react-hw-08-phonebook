@@ -33,7 +33,9 @@ export const StyledNavLink = styled(NavLink)`
     -moz-box-shadow: 0px 0px 3px 2px rgba(131, 96, 195, 0.75);
   }
   &.active {
-    background: rgba(131, 96, 195, 0.74);
+    box-shadow: 0px 0px 7px 0px rgba(255, 255, 255, 0.75);
+    -webkit-box-shadow: 0px 0px 7px 0px rgba(255, 255, 255, 0.75);
+    -moz-box-shadow: 0px 0px 7px 0px rgba(255, 255, 255, 0.75);
   }
 `;
 export const StyledUserLink = styled(StyledNavLink)`
@@ -43,9 +45,9 @@ export const StyledUserLink = styled(StyledNavLink)`
     -webkit-box-shadow: 0px 0px 3px 2px rgba(131, 96, 195, 0.75);
     -moz-box-shadow: 0px 0px 3px 2px rgba(131, 96, 195, 0.75);
   }
-  &.active {
+  /* &.active {
     background: ${props => (props.nav ? 'rgba(131, 96, 195, 0.75)' : 'rgba(46, 191, 145, 0.75)')};
-  }
+  } */
 `;
 export const LogOutBtn = styled(AddBtn)`
   padding: 20px 25px;

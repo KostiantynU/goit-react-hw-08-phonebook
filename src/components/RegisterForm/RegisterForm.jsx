@@ -10,19 +10,19 @@ const RegisterFormStyled = () => {
   const validate = values => {
     const errors = {};
     if (!values.email) {
-      errors.email = 'Required';
+      errors.email = 'Email is required';
     } else if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(values.email)) {
       errors.email = 'Invalid email';
     }
 
     if (!values.password) {
-      errors.password = 'Required';
+      errors.password = 'Password is required';
     } else if (!/^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.{8,})/i.test(values.password)) {
       errors.password = 'Invalid password';
     }
 
     if (!values.name) {
-      errors.name = 'Required';
+      errors.name = 'Name is required';
     }
 
     return errors;
