@@ -11,7 +11,7 @@ function LogInMenu() {
   const dispatch = useDispatch();
 
   const hideErrorMessage = () => {
-    const timerId = setTimeout(() => {
+    setTimeout(() => {
       dispatch(changeIsErrorAuth());
     }, 5000);
   };
