@@ -30,13 +30,13 @@ function LogInMenu() {
         <StyledUserLink to="/login/" nav="">
           LogIn
         </StyledUserLink>
-        <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}>
-          {isErrorAuth ? (
+        {isErrorAuth ? (
+          <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}>
             <ErrorMessageStyled>Something wrong with authorization</ErrorMessageStyled>
-          ) : (
-            false
-          )}
-        </motion.div>
+          </motion.div>
+        ) : (
+          false
+        )}
       </LogInMenuStyled>
     </>
   );
