@@ -12,7 +12,7 @@ function UserMenu() {
     <UserMenuStyled>
       {isLoggedIn ? (
         <p>
-          Greetings <UserSpan>{userObj.name}</UserSpan>!
+          Greetings <UserSpan>{userObj.userName}</UserSpan>!
         </p>
       ) : (
         <p>Greetings!</p>
