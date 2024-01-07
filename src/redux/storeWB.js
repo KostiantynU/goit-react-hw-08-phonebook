@@ -27,8 +27,7 @@ const authPersistConfig = {
 
 export const storeWB = configureStore({
   reducer: {
-    auth: persistReducer(authPersistConfig, authReducer),
-    authIsErrorStore: authIsErrorReducer,
+    auth: persistReducer(authPersistConfig, authReducer, authIsErrorReducer),
     contacts: contactsReducerWB,
   },
   middleware,

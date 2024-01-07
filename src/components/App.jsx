@@ -27,13 +27,11 @@ export default function App() {
       <AnimatePresence>
         <Routes>
           <Route path="/" element={<SharedLayout />}>
-            {/* <Route index element={<HomePage />} /> */}
             <Route element={<PrivateRoute redirectTo="register" />}>
               <Route index element={<HomePage />} />
               <Route path="contacts" element={<Contacts />} />
             </Route>
 
-            {/* <Route path="contacts" element={<Contacts />} /> */}
             <Route element={<PublicRoute redirectTo="/" restricted />}>
               <Route path="login" element={<LogInPage />} />
               <Route path="register" element={<RegisterPage />} />
