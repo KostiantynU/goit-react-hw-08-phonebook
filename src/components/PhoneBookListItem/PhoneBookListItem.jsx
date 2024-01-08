@@ -7,7 +7,7 @@ import { ListBtn } from 'components/PhoneBookForm/PhoneBookFormStyled';
 import EditContact from 'components/EditContact/EditContact';
 import { useState } from 'react';
 
-function BookItem({ name, number, id }) {
+function BookItem({ contactName, phoneNumber, id }) {
   const dispatch = useDispatch();
   const [isEditOpen, setIsEditOpen] = useState(false);
   const handleChangeEditOpen = () => {
@@ -17,7 +17,7 @@ function BookItem({ name, number, id }) {
 
   return (
     <PhoneBookListItem>
-      <NameSpan>{name} :</NameSpan> <TelSpan>{number}</TelSpan>
+      <NameSpan>{contactName} :</NameSpan> <TelSpan>{phoneNumber}</TelSpan>
       <ListBtn type="button" onClick={handleChangeEditOpen}>
         Edit
       </ListBtn>
@@ -30,8 +30,8 @@ function BookItem({ name, number, id }) {
 }
 
 BookItem.propTypes = {
-  name: PropTypes.string.isRequired,
-  number: PropTypes.string.isRequired,
+  contactName: PropTypes.string.isRequired,
+  phoneNumber: PropTypes.string.isRequired,
   id: PropTypes.string.isRequired,
 };
 export default BookItem;

@@ -11,41 +11,43 @@ function PhoneBookForm() {
 
   const validate = values => {
     const errors = {};
-    if (!values.name) {
-      errors.name = 'Required';
-    } else if (!/^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$/i.test(values.name)) {
-      errors.name = 'Invalid name';
+    if (!values.contactName) {
+      errors.contactName = 'Required';
+    } else if (
+      !/^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$/i.test(values.contactName)
+    ) {
+      errors.contactName = 'Invalid contactName';
     }
 
-    if (!values.number) {
-      errors.number = 'Required';
+    if (!values.phoneNumber) {
+      errors.phoneNumber = 'Required';
     } else if (
       !/\+?\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}/i.test(
-        values.number
+        values.phoneNumber
       )
     ) {
-      errors.number = 'Invalid number';
+      errors.phoneNumber = 'Invalid phoneNumber';
     }
 
     return errors;
   };
 
   const formik = useFormik({
-    initialValues: { name: '', number: '' },
+    initialValues: { contactName: '', phoneNumber: '' },
     validate,
     onSubmit: values => {
       const newContact = {
-        name: values.name,
-        number: values.number,
+        contactName: values.contactName,
+        phoneNumber: values.phoneNumber,
       };
 
       if (
         contactsItems.some(el => {
-          return el.name.toLowerCase().includes(newContact.name.toLowerCase());
+          return el.contactName.toLowerCase().includes(newContact.contactName.toLowerCase());
         })
       ) {
         formik.handleReset();
-        return alert(`${newContact.name} is already in list!`);
+        return alert(`${newContact.contactName} is already in list!`);
       }
 
       dispatch(addContactWB(newContact));
@@ -56,39 +58,39 @@ function PhoneBookForm() {
   return (
     <BookForm onSubmit={formik.handleSubmit}>
       <Div>
-        <Label htmlFor="name">Name</Label>
+        <Label htmlFor="contactName">Name</Label>
         <NameInput
           id="name"
-          name="name"
+          name="contactName"
           type="text"
-          title="Name may contain only letters, apostrophe, dash and spaces. For example Adrian, Jacob Mercer, Charles de Batz de Castelmore d'Artagnan"
+          title="ContactName may contain only letters, apostrophe, dash and spaces. For example Adrian, Jacob Mercer, Charles de Batz de Castelmore d'Artagnan"
           required
           onChange={formik.handleChange}
           onBlur={formik.handleBlur}
-          value={formik.values.name}
+          value={formik.values.contactName}
           $formadd="300px"
         />
-        {formik.touched.name && formik.errors.name ? (
+        {formik.touched.contactName && formik.errors.contactName ? (
           <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}>
-            <ErrorDiv>{formik.errors.name}</ErrorDiv>
+            <ErrorDiv>{formik.errors.contactName}</ErrorDiv>
           </motion.div>
         ) : null}
 
-        <Label htmlFor="number">Number</Label>
+        <Label htmlFor="phoneNumber">Number</Label>
         <TelInput
           id="number"
-          name="number"
+          name="phoneNumber"
           type="tel"
-          title="Name may contain only letters, apostrophe, dash and spaces. For example Adrian, Jacob Mercer, Charles de Batz de Castelmore d'Artagnan"
+          title="Phone number may contains \'+\' and numbers"
           required
           onChange={formik.handleChange}
           onBlur={formik.handleBlur}
-          value={formik.values.number}
+          value={formik.values.phoneNumber}
           $formadd="300px"
         />
-        {formik.touched.number && formik.errors.number ? (
+        {formik.touched.phoneNumber && formik.errors.phoneNumber ? (
           <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}>
-            <ErrorDiv>{formik.errors.number}</ErrorDiv>
+            <ErrorDiv>{formik.errors.phoneNumber}</ErrorDiv>
           </motion.div>
         ) : null}
 

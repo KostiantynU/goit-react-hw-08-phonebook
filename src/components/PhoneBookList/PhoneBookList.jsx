@@ -18,7 +18,9 @@ function PhoneBookList() {
 
   const filter = useSelector(selectFilter);
 
-  const filteredArray = contactsItemsRedux.filter(el => el.name.toLowerCase().includes(filter));
+  const filteredArray = contactsItemsRedux.filter(el =>
+    el.contactName.toLowerCase().includes(filter)
+  );
 
   const dispatch = useDispatch();
 
@@ -44,8 +46,15 @@ function PhoneBookList() {
           {contactsItemsRedux.length ? (
             <>
               <ListContacts>
-                {filteredArray.map(({ name, id, number }) => {
-                  return <BookItem key={id} name={name} number={number} id={id} />;
+                {filteredArray.map(({ contactName, _id, phoneNumber }) => {
+                  return (
+                    <BookItem
+                      key={_id}
+                      contactName={contactName}
+                      phoneNumber={phoneNumber}
+                      id={_id}
+                    />
+                  );
                 })}
               </ListContacts>
             </>
