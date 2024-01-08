@@ -37,7 +37,7 @@ const contactsSliceWB = createSlice({
     [fetchContactsWB.fulfilled](state, action) {
       state.phonebook.isLoading = false;
       state.phonebook.isError = null;
-      state.phonebook.items = action.payload;
+      state.phonebook.items = action.payload.allContacts;
     },
     [addContactWB.fulfilled](state, action) {
       state.phonebook.isLoading = false;

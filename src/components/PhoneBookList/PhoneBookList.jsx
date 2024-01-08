@@ -15,7 +15,7 @@ function PhoneBookList() {
   const contactsItemsRedux = useSelector(selectItems);
   const isLoadingRedux = useSelector(selectIsLoading);
   const isErrorRedux = useSelector(selectIsError);
-  
+
   const filter = useSelector(selectFilter);
 
   const filteredArray = contactsItemsRedux.filter(el => el.name.toLowerCase().includes(filter));
@@ -31,6 +31,7 @@ function PhoneBookList() {
       {isErrorRedux && (
         <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}>
           <p>Some error hapenned: {isErrorRedux}</p>
+          {/* Here I show an error message for the user - I think this is not necessary. Need to hide it, and show only notification?.. */}
         </motion.div>
       )}
       {isLoadingRedux && (
