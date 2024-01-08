@@ -31,7 +31,7 @@ export const deleteContactWB = createAsyncThunk('contacts/delete', async (contac
   }
 });
 
-export const updateUser = createAsyncThunk('updateUser', async (credentials, thunkAPI) => {
+export const updateContact = createAsyncThunk('updateContact', async (credentials, thunkAPI) => {
   try {
     const updObj = { name: credentials.name, number: credentials.number };
     const response = await axios.patch(`contacts/${credentials.id}`, updObj);
