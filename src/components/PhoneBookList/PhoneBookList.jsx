@@ -8,7 +8,7 @@ import {
   selectItems,
 } from 'redux/contacts/selectors';
 import { motion } from 'framer-motion';
-import { ListContacts, LoadingMessage } from './PhoneBookListStyled';
+import { ListContacts, LoadingMessage, ErrorSpanStyled } from './PhoneBookListStyled';
 import BookItem from 'components/PhoneBookListItem/PhoneBookListItem';
 
 function PhoneBookList() {
@@ -32,7 +32,7 @@ function PhoneBookList() {
     <>
       {isErrorRedux && (
         <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}>
-          <p>Some error hapenned: {isErrorRedux}</p>
+          <ErrorSpanStyled>Some error hapenned: {isErrorRedux}</ErrorSpanStyled>
           {/* Here I show an error message for the user - I think this is not necessary. Need to hide it, and show only notification?.. */}
         </motion.div>
       )}

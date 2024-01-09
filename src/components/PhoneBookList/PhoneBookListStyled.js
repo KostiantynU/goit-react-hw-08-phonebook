@@ -14,3 +14,7 @@ export const ListContacts = styled.ul`
 export const LoadingMessage = styled.p`
   background-image: linear-gradient(155deg, rgba(131, 96, 195, 0.2), rgba(46, 191, 145, 0.3));
 `;
+
+export const ErrorSpanStyled = styled.span`
+  color: rgb(189, 4, 75);
+`;

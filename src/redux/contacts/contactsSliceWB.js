@@ -12,7 +12,7 @@ const handlePending = state => {
 };
 const handleReject = (state, action) => {
   state.phonebook.isLoading = false;
-  state.phonebook.isError = action.payload;
+  state.phonebook.isError = action.payload.handleErrorMessage;
 };
 
 const contactsSliceWB = createSlice({
@@ -38,6 +38,7 @@ const contactsSliceWB = createSlice({
     [fetchContactsWB.rejected]: handleReject,
     [addContactWB.rejected]: handleReject,
     [deleteContactWB.rejected]: handleReject,
+    [updateContact.rejected]: handleReject,
     [fetchContactsWB.fulfilled](state, action) {
       state.phonebook.isLoading = false;
       state.phonebook.isError = null;
@@ -62,6 +63,8 @@ const contactsSliceWB = createSlice({
     [updateContact.fulfilled](state, action) {
       const indx = state.phonebook.items.findIndex(contact => contact._id === action.payload._id);
       state.phonebook.items.splice(indx, 1, action.payload);
+      state.isError = false;
+      state.isLoading = false;
     },
   },
 });

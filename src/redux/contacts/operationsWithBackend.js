@@ -37,6 +37,9 @@ export const updateContact = createAsyncThunk('updateContact', async (credential
     const response = await axios.patch(`api/contacts/${credentials.id}`, updObj);
     return response.data;
   } catch (error) {
-    return thunkAPI.rejectWithValue(error.message);
+    return thunkAPI.rejectWithValue({
+      error: error.message,
+      handleErrorMessage: error.response.data.message,
+    });
   }
 });
