@@ -60,7 +60,7 @@ const contactsSliceWB = createSlice({
       state.phonebook.items = [];
     },
     [updateContact.fulfilled](state, action) {
-      const indx = state.phonebook.items.findIndex(contact => contact.id === action.payload.id);
+      const indx = state.phonebook.items.findIndex(contact => contact._id === action.payload._id);
       state.phonebook.items.splice(indx, 1, action.payload);
     },
   },

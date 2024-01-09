@@ -6,10 +6,10 @@ import { motion } from 'framer-motion';
 import { EditContactForm, EditInput, CloseBtn, EditSubBtn } from './EditContactStyled';
 import { ErrorDiv } from 'components/PhoneBookForm/PhoneBookFormStyled';
 
-const EditContact = ({ handleChangeEditOpen, userId }) => {
+const EditContact = ({ handleChangeEditOpen, contactId }) => {
   const contactsItems = useSelector(selectItems);
   const dispatch = useDispatch();
-  const existingUser = contactsItems.find(contact => contact._id === userId);
+  const existingContact = contactsItems.find(el => el._id === contactId);
 
   const validate = values => {
     const errors = {};
@@ -36,11 +36,14 @@ const EditContact = ({ handleChangeEditOpen, userId }) => {
   };
 
   const editFormik = useFormik({
-    initialValues: { contactName: existingUser.contactName, phoneNumber: existingUser.phoneNumber },
+    initialValues: {
+      contactName: existingContact.contactName,
+      phoneNumber: existingContact.phoneNumber,
+    },
     validate,
     onSubmit: values => {
       const updContact = {
-        id: userId,
+        id: contactId,
         contactName: values.contactName,
         phoneNumber: values.phoneNumber,
       };

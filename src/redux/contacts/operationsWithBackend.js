@@ -33,8 +33,8 @@ export const deleteContactWB = createAsyncThunk('contacts/delete', async (contac
 
 export const updateContact = createAsyncThunk('updateContact', async (credentials, thunkAPI) => {
   try {
-    const updObj = { name: credentials.name, number: credentials.number };
-    const response = await axios.patch(`contacts/${credentials.id}`, updObj);
+    const updObj = { contactName: credentials.contactName, phoneNumber: credentials.phoneNumber };
+    const response = await axios.patch(`api/contacts/${credentials.id}`, updObj);
     return response.data;
   } catch (error) {
     return thunkAPI.rejectWithValue(error.message);
