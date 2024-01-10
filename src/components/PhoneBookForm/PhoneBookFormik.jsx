@@ -1,13 +1,24 @@
-import { useFormik } from 'formik';
+import { useFormik, Field } from 'formik';
 import { useDispatch, useSelector } from 'react-redux';
 import { motion } from 'framer-motion';
 import { selectItems } from 'redux/contacts/selectors';
 import { addContactWB } from 'redux/contacts/operationsWithBackend';
-import { BookForm, NameInput, AddBtn, Label, Div, TelInput, ErrorDiv } from './PhoneBookFormStyled';
+import {
+  BookForm,
+  NameInput,
+  AddBtn,
+  Label,
+  Div,
+  TelInput,
+  ErrorDiv,
+  FavoriteCheckbox,
+} from './PhoneBookFormStyled';
+import { useState } from 'react';
 
 function PhoneBookForm() {
   const contactsItems = useSelector(selectItems);
   const dispatch = useDispatch();
+  const [isChecked, setIsChecked] = useState(false);
 
   const validate = values => {
     const errors = {};
@@ -33,12 +44,13 @@ function PhoneBookForm() {
   };
 
   const formik = useFormik({
-    initialValues: { contactName: '', phoneNumber: '' },
+    initialValues: { contactName: '', phoneNumber: '', favorite: isChecked },
     validate,
     onSubmit: values => {
       const newContact = {
         contactName: values.contactName,
         phoneNumber: values.phoneNumber,
+        favorite: false,
       };
 
       if (
@@ -93,6 +105,23 @@ function PhoneBookForm() {
             <ErrorDiv>{formik.errors.phoneNumber}</ErrorDiv>
           </motion.div>
         ) : null}
+
+        <Label htmlFor="favorite">
+          Favorite
+          {/* <Field as="checkbox" name="favorite" /> */}
+          <FavoriteCheckbox
+            // id="favorite"
+            name="favorite"
+            type="checkbox"
+            title="Favorite contact?"
+            checked={isChecked}
+            // required
+            onChange={() => setIsChecked(state => !state.isChecked)}
+            // onBlur={formik.handleBlur}
+            // value={formik.values.favorite}
+            // $formadd="100%"
+          />
+        </Label>
 
         <AddBtn type="submit">Submit</AddBtn>
       </Div>
