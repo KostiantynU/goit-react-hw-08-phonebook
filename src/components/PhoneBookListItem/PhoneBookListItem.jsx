@@ -5,9 +5,10 @@ import { selectIsLoading } from 'redux/contacts/selectors';
 import { PhoneBookListItem, NameSpan, TelSpan } from './PhoneBookListItemStyled';
 import { ListBtn } from 'components/PhoneBookForm/PhoneBookFormStyled';
 import EditContact from 'components/EditContact/EditContact';
+import { MdFavoriteBorder, MdFavorite } from 'react-icons/md';
 import { useState } from 'react';
 
-function BookItem({ contactName, phoneNumber, id }) {
+function BookItem({ contactName, phoneNumber, id, favorite }) {
   const dispatch = useDispatch();
   const [isEditOpen, setIsEditOpen] = useState(false);
   const handleChangeEditOpen = () => {
@@ -18,6 +19,7 @@ function BookItem({ contactName, phoneNumber, id }) {
   return (
     <PhoneBookListItem>
       <NameSpan>{contactName} :</NameSpan> <TelSpan>{phoneNumber}</TelSpan>
+      {favorite ? <MdFavorite /> : <MdFavoriteBorder />}
       <ListBtn type="button" onClick={handleChangeEditOpen}>
         Edit
       </ListBtn>

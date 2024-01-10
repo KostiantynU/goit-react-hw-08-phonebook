@@ -52,7 +52,9 @@ const contactsSliceWB = createSlice({
     [deleteContactWB.fulfilled](state, action) {
       state.phonebook.isLoading = false;
       state.phonebook.isError = null;
-      const indx = state.phonebook.items.findIndex(contact => contact.id === action.payload.id);
+      const indx = state.phonebook.items.findIndex(
+        contact => contact._id === action.payload.deletedContact._id
+      );
       state.phonebook.items.splice(indx, 1);
     },
     [logOut.fulfilled](state) {
