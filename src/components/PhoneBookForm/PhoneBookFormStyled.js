@@ -52,8 +52,12 @@ export const FavoriteCheckbox = styled.input`
   overflow: hidden;
 `;
 
-export const Label = styled.label`
-  display: block;
+export const Label = styled.label.attrs(props => ({
+  $disFlex: props.$disFlex || 'block',
+  $jusCon: props.$jusCon || 'start',
+}))`
+  display: ${props => props.$disFlex};
+  justify-content: ${props => props.$jusCon};
   margin: 0.5em;
 `;
 export const Paragraph = styled.p`

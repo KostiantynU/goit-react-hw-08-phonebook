@@ -1,4 +1,4 @@
-import { useFormik, Field } from 'formik';
+import { useFormik, Formik, Field, ErrorMessage } from 'formik';
 import { useDispatch, useSelector } from 'react-redux';
 import { motion } from 'framer-motion';
 import { selectItems } from 'redux/contacts/selectors';
@@ -18,7 +18,6 @@ import { useState } from 'react';
 function PhoneBookForm() {
   const contactsItems = useSelector(selectItems);
   const dispatch = useDispatch();
-  const [isChecked, setIsChecked] = useState(false);
 
   const validate = values => {
     const errors = {};
@@ -43,89 +42,134 @@ function PhoneBookForm() {
     return errors;
   };
 
-  const formik = useFormik({
-    initialValues: { contactName: '', phoneNumber: '', favorite: isChecked },
-    validate,
-    onSubmit: values => {
-      const newContact = {
-        contactName: values.contactName,
-        phoneNumber: values.phoneNumber,
-        favorite: false,
-      };
+  // const formik = useFormik({
+  //   initialValues: { contactName: '', phoneNumber: '', favorite: isChecked },
+  //   validate,
+  //   onSubmit: values => {
+  //     const newContact = {
+  //       contactName: values.contactName,
+  //       phoneNumber: values.phoneNumber,
+  //       favorite: values.favorite,
+  //     };
 
-      if (
-        contactsItems.some(el => {
-          return el.contactName.toLowerCase().includes(newContact.contactName.toLowerCase());
-        })
-      ) {
-        formik.handleReset();
-        return alert(`${newContact.contactName} is already in list!`);
-      }
+  //     if (
+  //       contactsItems.some(el => {
+  //         return el.contactName.toLowerCase().includes(newContact.contactName.toLowerCase());
+  //       })
+  //     ) {
+  //       formik.handleReset();
+  //       return alert(`${newContact.contactName} is already in list!`);
+  //     }
 
-      dispatch(addContactWB(newContact));
-      formik.handleReset();
-    },
-  });
+  //     dispatch(addContactWB(newContact));
+  //     formik.handleReset();
+  //   },
+  // });
 
   return (
-    <BookForm onSubmit={formik.handleSubmit}>
-      <Div>
-        <Label htmlFor="contactName">Name</Label>
-        <NameInput
-          id="name"
-          name="contactName"
-          type="text"
-          title="ContactName may contain only letters, apostrophe, dash and spaces. For example Adrian, Jacob Mercer, Charles de Batz de Castelmore d'Artagnan"
-          required
-          onChange={formik.handleChange}
-          onBlur={formik.handleBlur}
-          value={formik.values.contactName}
-          $formadd="300px"
-        />
-        {formik.touched.contactName && formik.errors.contactName ? (
-          <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}>
-            <ErrorDiv>{formik.errors.contactName}</ErrorDiv>
-          </motion.div>
-        ) : null}
+    <Formik
+      initialValues={{ contactName: '', phoneNumber: '', favorite: false }}
+      validate={validate}
+      onSubmit={(values, { setSubmitting, resetForm }) => {
+        setSubmitting(true);
+        const newContact = {
+          contactName: values.contactName,
+          phoneNumber: values.phoneNumber,
+          favorite: values.favorite,
+        };
 
-        <Label htmlFor="phoneNumber">Number</Label>
-        <TelInput
-          id="number"
-          name="phoneNumber"
-          type="tel"
-          title="Phone number may contains \'+\' and numbers"
-          required
-          onChange={formik.handleChange}
-          onBlur={formik.handleBlur}
-          value={formik.values.phoneNumber}
-          $formadd="300px"
-        />
-        {formik.touched.phoneNumber && formik.errors.phoneNumber ? (
-          <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}>
-            <ErrorDiv>{formik.errors.phoneNumber}</ErrorDiv>
-          </motion.div>
-        ) : null}
+        if (
+          contactsItems.some(el => {
+            return el.contactName.toLowerCase().includes(newContact.contactName.toLowerCase());
+          })
+        ) {
+          // formik.handleReset();
+          resetForm();
+          return alert(`${newContact.contactName} is already in list!`);
+        }
 
-        <Label htmlFor="favorite">
-          Favorite
-          {/* <Field as="checkbox" name="favorite" /> */}
-          <FavoriteCheckbox
-            // id="favorite"
-            name="favorite"
-            type="checkbox"
-            title="Favorite contact?"
-            checked={isChecked}
-            // required
-            onChange={() => setIsChecked(state => !state.isChecked)}
-            // onBlur={formik.handleBlur}
-            // value={formik.values.favorite}
-            // $formadd="100%"
+        setSubmitting(false);
+        dispatch(addContactWB(newContact));
+        resetForm();
+        // formik.handleReset();
+      }}
+    >
+      {({ handleSubmit, isSubmitting }) => (
+        <form onSubmit={handleSubmit}>
+          <Div>
+            <Label htmlFor="contactName">Name</Label>
+            <Field
+              name="contactName"
+              type="text"
+              placeholder="Enter the contact name"
+              border={'red'}
+            />
+            <ErrorMessage name="contactName">{msg => <ErrorDiv>{msg}</ErrorDiv>}</ErrorMessage>
+
+            <Label htmlFor="phoneNumber">Phone number</Label>
+            <Field name="phoneNumber" type="text" placeholder="Enter the contacts phone number" />
+            <ErrorMessage name="phoneNumber">{msg => <ErrorDiv>{msg}</ErrorDiv>}</ErrorMessage>
+
+            <Label htmlFor="favorite" $disFlex="flex" $jusCon="space-between">
+              Favorite
+              <Field type="checkbox" name="favorite" />
+            </Label>
+
+            <AddBtn type="submit" disabled={isSubmitting}>
+              Submit
+            </AddBtn>
+
+            {/* The old code */}
+            {/* <NameInput
+            id="name"
+            name="contactName"
+            type="text"
+            title="ContactName may contain only letters, apostrophe, dash and spaces. For example Adrian, Jacob Mercer, Charles de Batz de Castelmore d'Artagnan"
+            required
+            onChange={formik.handleChange}
+            onBlur={formik.handleBlur}
+            value={formik.values.contactName}
+            $formadd="300px"
           />
-        </Label>
+          {formik.touched.contactName && formik.errors.contactName ? (
+            <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}>
+              <ErrorDiv>{formik.errors.contactName}</ErrorDiv>
+            </motion.div>
+          ) : null} */}
 
-        <AddBtn type="submit">Submit</AddBtn>
-      </Div>
-    </BookForm>
+            {/* <TelInput
+            id="number"
+            name="phoneNumber"
+            type="tel"
+            title="Phone number may contains \'+\' and numbers"
+            required
+            onChange={formik.handleChange}
+            onBlur={formik.handleBlur}
+            value={formik.values.phoneNumber}
+            $formadd="300px"
+          />
+          {formik.touched.phoneNumber && formik.errors.phoneNumber ? (
+            <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}>
+              <ErrorDiv>{formik.errors.phoneNumber}</ErrorDiv>
+            </motion.div>
+          ) : null} */}
+
+            {/* <FavoriteCheckbox
+          id="favorite"
+          name="favorite"
+          type="checkbox"
+          title="Favorite contact?"
+          checked={isChecked}
+          // required
+          onChange={handleCheckbox}
+          // onBlur={formik.handleBlur}
+          // value={formik.values.favorite}
+          // $formadd="100%"
+        /> */}
+          </Div>
+        </form>
+      )}
+    </Formik>
   );
 }
 
