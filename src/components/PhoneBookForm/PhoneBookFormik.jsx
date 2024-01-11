@@ -101,13 +101,20 @@ function PhoneBookForm() {
             <Field
               name="contactName"
               type="text"
+              title="ContactName may contain only letters, apostrophe, dash and spaces. For example Adrian, Jacob Mercer, Charles de Batz de Castelmore d'Artagnan"
               placeholder="Enter the contact name"
-              border={'red'}
+              component={NameInput}
             />
             <ErrorMessage name="contactName">{msg => <ErrorDiv>{msg}</ErrorDiv>}</ErrorMessage>
 
             <Label htmlFor="phoneNumber">Phone number</Label>
-            <Field name="phoneNumber" type="text" placeholder="Enter the contacts phone number" />
+            <Field
+              name="phoneNumber"
+              type="text"
+              title="Phone number may contains \'+\' and numbers"
+              placeholder="Enter the contacts phone number"
+              component={TelInput}
+            />
             <ErrorMessage name="phoneNumber">{msg => <ErrorDiv>{msg}</ErrorDiv>}</ErrorMessage>
 
             <Label htmlFor="favorite" $disFlex="flex" $jusCon="space-between">

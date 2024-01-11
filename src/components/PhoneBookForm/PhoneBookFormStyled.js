@@ -10,7 +10,8 @@ export const NameInput = styled.input.attrs(props => ({
   $formadd: props.$formadd || '100%',
   $margin: props.$margin || '0.5rem',
 }))`
-  width: ${props => props.$formadd};
+  /* width: ${props => props.$formadd}; */
+  width: 90%;
   height: 30px;
   margin: ${props => props.$margin};
   margin-bottom: 2rem;
@@ -26,9 +27,10 @@ export const NameInput = styled.input.attrs(props => ({
   }
 `;
 export const TelInput = styled(NameInput).attrs(props => ({
-  $formadd: props.$formadd || '100%',
+  $formadd: props.$formadd || '90%',
 }))`
-  width: ${props => props.$formadd};
+  /* width: ${props => props.$formadd}; */
+  width: 90%;
   margin: 0.5rem;
 `;
 export const SearchInput = styled(NameInput).attrs(props => ({
