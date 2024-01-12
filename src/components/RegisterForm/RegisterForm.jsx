@@ -1,7 +1,7 @@
 import { useFormik } from 'formik';
 import { register } from 'redux/auth/authOperations';
 import { motion } from 'framer-motion';
-import { AddBtn, NameInput } from 'components/PhoneBookForm/PhoneBookFormStyled';
+import { AddBtn, StyledInput } from 'components/PhoneBookForm/PhoneBookFormStyled';
 import { LogInFormStyled } from 'components/LogInForm/LogInFormStyled';
 import { useDispatch } from 'react-redux';
 
@@ -45,7 +45,7 @@ const RegisterFormStyled = () => {
   return (
     <LogInFormStyled onSubmit={formik.handleSubmit}>
       <label htmlFor="userName">Enter your name</label>
-      <NameInput
+      <StyledInput
         type="text"
         name="userName"
         {...formik.getFieldProps('userName')}
@@ -58,7 +58,7 @@ const RegisterFormStyled = () => {
       ) : null}
 
       <label htmlFor="userEmail">Enter your e-mail</label>
-      <NameInput
+      <StyledInput
         type="email"
         name="userEmail"
         {...formik.getFieldProps('userEmail')}
@@ -71,7 +71,7 @@ const RegisterFormStyled = () => {
       ) : null}
 
       <label htmlFor="userPassword">Enter password</label>
-      <NameInput
+      <StyledInput
         type="password"
         name="userPassword"
         {...formik.getFieldProps('userPassword')}

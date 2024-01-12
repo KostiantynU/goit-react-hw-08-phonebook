@@ -53,6 +53,7 @@ function PhoneBookList() {
                       contactName={contactName}
                       phoneNumber={phoneNumber}
                       id={_id}
+                      favorite={favorite}
                     />
                   );
                 })}
