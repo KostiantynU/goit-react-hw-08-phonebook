@@ -1,24 +1,36 @@
 import { useField } from 'formik';
 import { MdFavoriteBorder, MdFavorite } from 'react-icons/md';
+import { motion } from 'framer-motion';
 import styled from 'styled-components';
 
 export const BookForm = styled.form`
   padding: 5px;
 `;
+
 export const Div = styled.div`
   border: 1px solid rgb(46, 191, 145);
   border-radius: 5px;
 `;
 
-export const StyledInput = styled.input.attrs(props => ({
-  $formadd: props.$formadd || '100%',
-  $margin: props.$margin || '0.5rem',
+export const Label = styled.label.attrs(props => ({
+  $disFlex: props.$disFlex || 'block',
+  $jusCon: props.$jusCon || 'start',
 }))`
-  /* width: ${props => props.$formadd}; */
-  width: 90%;
+  display: ${props => props.$disFlex};
+  justify-content: ${props => props.$jusCon};
+  margin: 0.5em;
+`;
+
+export const StyledTextInput = styled.input.attrs(props => ({
+  $width: props.$width || '90%',
+  $margin: props.$margin || '0.5rem',
+  $marginBottom: props.$marginBottom || '2rem',
+}))`
+  width: ${props => props.$width};
+  /* width: 90%; */
   height: 30px;
-  /* margin: ${props => props.$margin}; */
-  margin-bottom: 2rem;
+  margin: ${props => props.$margin};
+  margin-bottom: ${props => props.$marginBottom};
   padding: 0.2rem;
   background: linear-gradient(310deg, rgb(131, 96, 195), rgb(46, 191, 145));
   outline: none;
@@ -30,6 +42,21 @@ export const StyledInput = styled.input.attrs(props => ({
     -moz-box-shadow: 0px 0px 8px 3px rgba(131, 96, 195, 0.75);
   }
 `;
+
+export const NameInput = ({ label, ...props }) => {
+  const [field, meta] = useField(props);
+  return (
+    <div>
+      <Label htmlFor={props.id || props.name}>{label}</Label>
+      <StyledTextInput {...field} {...props} />
+      {meta.error && meta.touched ? (
+        <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}>
+          <ErrorDiv>{meta.error}</ErrorDiv>
+        </motion.div>
+      ) : null}
+    </div>
+  );
+};
 
 // export const NameInput = styled.input.attrs(props => ({
 //   $formadd: props.$formadd || '100%',
@@ -52,7 +79,7 @@ export const StyledInput = styled.input.attrs(props => ({
 //   }
 // `;
 
-export const TelInput = styled(StyledInput).attrs(props => ({
+export const TelInput = styled(StyledTextInput).attrs(props => ({
   $formadd: props.$formadd || '90%',
 }))`
   /* width: ${props => props.$formadd}; */
@@ -60,7 +87,7 @@ export const TelInput = styled(StyledInput).attrs(props => ({
   margin: 0.5rem;
 `;
 
-export const SearchInput = styled(StyledInput).attrs(props => ({
+export const SearchInput = styled(StyledTextInput).attrs(props => ({
   $formadd: props.$formadd || '100%',
 }))`
   width: ${props => props.$formadd};
@@ -82,8 +109,10 @@ export const FavoriteCheckbox = styled.input`
 `;
 
 export const FavoriteLabelCheckbox = styled.label`
-  display: flex;
-  justify-content: space-between;
+  display: inline-flex;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 10px;
   margin: 0.5em;
 `;
 
@@ -95,21 +124,12 @@ export const FavoriteCheckboxSecond = ({ children, ...props }) => {
       <FavoriteLabelCheckbox>
         {<FavoriteCheckbox type="checkbox" {...field} {...props} />}
         {children}
-        {field.checked ? <MdFavorite /> : <MdFavoriteBorder />}
+        {field.checked ? <MdFavorite size="1.5em" /> : <MdFavoriteBorder size="1.5em" />}
       </FavoriteLabelCheckbox>
       {meta.touched && meta.error ? <ErrorDiv>{meta.error}</ErrorDiv> : null}
     </div>
   );
 };
-
-export const Label = styled.label.attrs(props => ({
-  $disFlex: props.$disFlex || 'block',
-  $jusCon: props.$jusCon || 'start',
-}))`
-  display: ${props => props.$disFlex};
-  justify-content: ${props => props.$jusCon};
-  margin: 0.5em;
-`;
 
 export const Paragraph = styled.p`
   margin: 0.5rem;

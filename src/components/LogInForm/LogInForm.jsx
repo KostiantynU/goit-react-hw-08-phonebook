@@ -2,7 +2,7 @@ import { useFormik } from 'formik';
 import { motion } from 'framer-motion';
 import { logIn } from 'redux/auth/authOperations';
 import { useDispatch } from 'react-redux';
-import { AddBtn, StyledInput } from 'components/PhoneBookForm/PhoneBookFormStyled';
+import { AddBtn, StyledTextInput } from 'components/PhoneBookForm/PhoneBookFormStyled';
 import { LogInFormStyled } from './LogInFormStyled';
 
 function LogInForm() {
@@ -45,7 +45,7 @@ function LogInForm() {
   return (
     <LogInFormStyled onSubmit={formik.handleSubmit}>
       <label htmlFor="userEmail">Enter your e-mail</label>
-      <StyledInput
+      <StyledTextInput
         type="email"
         name="userEmail"
         {...formik.getFieldProps('userEmail')}
@@ -58,7 +58,7 @@ function LogInForm() {
       ) : null}
 
       <label htmlFor="userPassword">Enter password</label>
-      <StyledInput
+      <StyledTextInput
         type="password"
         name="userPassword"
         {...formik.getFieldProps('userPassword')}

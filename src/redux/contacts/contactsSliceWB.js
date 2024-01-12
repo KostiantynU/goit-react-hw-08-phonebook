@@ -12,7 +12,10 @@ const handlePending = state => {
 };
 const handleReject = (state, action) => {
   state.phonebook.isLoading = false;
-  state.phonebook.isError = action.payload.handleErrorMessage;
+  state.phonebook.isError = action.payload.message;
+  if (action.payload.message === 'Rejected') {
+    return logOut();
+  }
 };
 
 const contactsSliceWB = createSlice({
@@ -35,9 +38,12 @@ const contactsSliceWB = createSlice({
     [fetchContactsWB.pending]: handlePending,
     [addContactWB.pending]: handlePending,
     [deleteContactWB.pending]: handlePending,
+    [logOut.pending]: handlePending,
+    [updateContact.pending]: handlePending,
     [fetchContactsWB.rejected]: handleReject,
     [addContactWB.rejected]: handleReject,
     [deleteContactWB.rejected]: handleReject,
+    [logOut.rejected]: handleReject,
     [updateContact.rejected]: handleReject,
     [fetchContactsWB.fulfilled](state, action) {
       state.phonebook.isLoading = false;

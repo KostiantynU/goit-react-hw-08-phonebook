@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { StyledInput, ListBtn } from 'components/PhoneBookForm/PhoneBookFormStyled';
+import { StyledTextInput, ListBtn } from 'components/PhoneBookForm/PhoneBookFormStyled';
 export const EditContactForm = styled.form`
   display: flex;
   width: 100%;
@@ -9,7 +9,7 @@ export const EditContactForm = styled.form`
   left: 0;
   top: -50%; */
 `;
-export const EditInput = styled(StyledInput)`
+export const EditInput = styled(StyledTextInput)`
   width: 300px;
   margin: 0;
   margin-bottom: 0;

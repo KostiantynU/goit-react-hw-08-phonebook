@@ -1,18 +1,8 @@
-import { useFormik, Formik, Field, ErrorMessage, useField } from 'formik';
+import { Formik } from 'formik';
 import { useDispatch, useSelector } from 'react-redux';
-import { motion } from 'framer-motion';
 import { selectItems } from 'redux/contacts/selectors';
 import { addContactWB } from 'redux/contacts/operationsWithBackend';
-import {
-  BookForm,
-  StyledInput,
-  AddBtn,
-  Label,
-  Div,
-  TelInput,
-  ErrorDiv,
-  FavoriteCheckboxSecond,
-} from './PhoneBookFormStyled';
+import { BookForm, AddBtn, Div, FavoriteCheckboxSecond, NameInput } from './PhoneBookFormStyled';
 
 function PhoneBookForm() {
   const contactsItems = useSelector(selectItems);
@@ -69,7 +59,10 @@ function PhoneBookForm() {
     <Formik
       initialValues={{ contactName: '', phoneNumber: '', favorite: false }}
       validate={validate}
-      onSubmit={(values, { setSubmitting, resetForm }) => {
+      onSubmit={(values, { setSubmitting, resetForm, isValidating }) => {
+        console.log('begin');
+        console.log('setSubmitting', setSubmitting);
+        console.log('isValidating', isValidating);
         setSubmitting(true);
         const newContact = {
           contactName: values.contactName,
@@ -86,38 +79,70 @@ function PhoneBookForm() {
           resetForm();
           return alert(`${newContact.contactName} is already in list!`);
         }
+        console.log('middle');
+        console.log('setSubmitting', setSubmitting);
+        console.log('isValidating', isValidating);
+        if (isValidating) {
+          setSubmitting(false);
+          resetForm();
+          return alert('Something wrong with validation');
+        }
 
         setSubmitting(false);
         dispatch(addContactWB(newContact));
         resetForm();
+        console.log('end');
+        console.log('setSubmitting', setSubmitting);
+        console.log('isValidating', isValidating);
         // formik.handleReset();
       }}
     >
       {({ handleSubmit, isSubmitting, values }) => (
-        <form onSubmit={handleSubmit}>
+        <BookForm onSubmit={handleSubmit}>
           <Div>
-            <Label htmlFor="contactName">Name</Label>
+            {/* <Label htmlFor="contactName">Name</Label>
             <Field
+              id="contactName"
               name="contactName"
               type="text"
               title="Name of contact may contain only letters, apostrophe, dash and spaces. For example Adrian, Jacob Mercer, Charles de Batz de Castelmore d'Artagnan"
               placeholder="Enter the contact name"
-              component={StyledInput}
+              component={StyledTextInput}
             />
-            <ErrorMessage name="contactName">{msg => <ErrorDiv>{msg}</ErrorDiv>}</ErrorMessage>
-            <Label htmlFor="phoneNumber">Phone number</Label>
+            <ErrorMessage name="contactName">{msg => <ErrorDiv>{msg}</ErrorDiv>}</ErrorMessage> */}
+
+            <NameInput
+              label="Contact name"
+              id="contactName"
+              name="contactName"
+              title="Name of contact may contain only letters, apostrophe, dash and spaces. For example Adrian, Jacob Mercer, Charles de Batz de Castelmore d'Artagnan"
+              placeholder="Enter the contact name"
+              $width="300px"
+              $marginBottom="0.5rem"
+            />
+
+            <NameInput
+              label="Phone number"
+              id="phoneNumber"
+              name="phoneNumber"
+              title="Phone number may contains \'+\' and numbers"
+              placeholder="Enter the contact phone number"
+              $width="300px"
+              $marginBottom="0.5rem"
+            />
+
+            {/* <Label htmlFor="phoneNumber">Phone number</Label>
             <Field
+              id="phoneNumber"
               name="phoneNumber"
               type="text"
               title="Phone number may contains \'+\' and numbers"
               placeholder="Enter the contact phone number"
               component={TelInput}
             />
-            <ErrorMessage name="phoneNumber">{msg => <ErrorDiv>{msg}</ErrorDiv>}</ErrorMessage>
+            <ErrorMessage name="phoneNumber">{msg => <ErrorDiv>{msg}</ErrorDiv>}</ErrorMessage> */}
 
-            <FavoriteCheckboxSecond name={'favorite'} simpleProps="simpleProp">
-              Favorite
-            </FavoriteCheckboxSecond>
+            <FavoriteCheckboxSecond name={'favorite'}>Favorite</FavoriteCheckboxSecond>
 
             {/* <Label htmlFor="favorite" $disFlex="flex" $jusCon="space-between">
               Favorite{values.favorite ? <MdFavorite /> : <MdFavoriteBorder />}
@@ -173,7 +198,7 @@ function PhoneBookForm() {
           // $formadd="100%"
         /> */}
           </Div>
-        </form>
+        </BookForm>
       )}
     </Formik>
   );

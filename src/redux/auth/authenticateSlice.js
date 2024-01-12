@@ -46,6 +46,7 @@ const authSlice = createSlice({
     [refreshUser.pending](state) {
       state.isRefreshing = true;
       state.isError = false;
+      // state.isLoggedIn = false;
     },
     [refreshUser.fulfilled](state, action) {
       state.user = action.payload;
@@ -55,6 +56,7 @@ const authSlice = createSlice({
     [refreshUser.rejected](state) {
       state.isRefreshing = false;
       state.token = null;
+      state.isLoggedIn = false;
     },
   },
 });
