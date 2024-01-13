@@ -7,16 +7,17 @@ const initialState = {
   token: null,
   isLoggedIn: false,
   isRefreshing: false,
-  isError: false,
+  isError: null,
+  isErrorLogin: null,
 };
 
 const authSlice = createSlice({
   name: 'auth',
   initialState,
   reducers: {
-    changeIsErrorAuth: {
+    changeIsErrorLogin: {
       reducer(state, action) {
-        state.isError = false;
+        state.isErrorLogin = false;
       },
     },
   },
@@ -26,14 +27,22 @@ const authSlice = createSlice({
       // state.token = action.payload.token;
       // state.isLoggedIn = true;
     },
+    [logIn.pending](state, action) {
+      state.token = null;
+      state.isLoggedIn = false;
+      state.token = null;
+      state.isError = null;
+      state.isErrorLogin = null;
+    },
     [logIn.fulfilled](state, action) {
       state.user = action.payload.user;
       state.token = action.payload.token;
       state.isLoggedIn = true;
-      state.isError = false;
+      state.isError = null;
+      state.isErrorLogin = null;
     },
     [logIn.rejected](state, action) {
-      state.isError = true;
+      state.isErrorLogin = action.payload;
       state.isLoggedIn = false;
       state.isRefreshing = false;
     },
@@ -41,26 +50,30 @@ const authSlice = createSlice({
       state.user = { name: null, email: null };
       state.token = null;
       state.isLoggedIn = false;
-      state.isError = false;
+      state.isError = null;
+      state.isErrorLogin = null;
     },
     [refreshUser.pending](state) {
       state.isRefreshing = true;
-      state.isError = false;
-      // state.isLoggedIn = false;
+      state.isError = null;
     },
     [refreshUser.fulfilled](state, action) {
       state.user = action.payload;
       state.isLoggedIn = true;
       state.isRefreshing = false;
+      state.isError = null;
+      state.isErrorLogin = null;
     },
-    [refreshUser.rejected](state) {
+    [refreshUser.rejected](state, action) {
       state.isRefreshing = false;
       state.token = null;
       state.isLoggedIn = false;
+      state.isErrorLogin = false;
+      state.isError = true;
     },
   },
 });
 
-export const { changeIsErrorAuth } = authSlice.actions;
-export const authIsErrorReducer = authSlice.reducer;
+export const { changeIsErrorLogin } = authSlice.actions;
+export const authIsErrorRefresh = authSlice.reducer;
 export const authReducer = authSlice.reducer;

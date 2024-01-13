@@ -3,7 +3,7 @@ import { Routes, Route } from 'react-router-dom';
 import { AnimatePresence } from 'framer-motion';
 import { useDispatch, useSelector } from 'react-redux';
 import { refreshUser } from 'redux/auth/authOperations';
-import { selectIsRefreshing } from 'redux/auth/selectors';
+import { selectIsLoggedIn, selectIsRefreshing } from 'redux/auth/selectors';
 import SharedLayout from './SharedLayout/SharedLayout';
 import PrivateRoute from './PrivateRoute';
 import PublicRoute from './PublicRoute';
@@ -15,12 +15,15 @@ export default function App() {
   const RegisterPage = lazy(() => import('pages/Register'));
   const NotFoundPage = lazy(() => import('pages/NotFound'));
 
-  const dispatch = useDispatch();
   const isRefreshing = useSelector(selectIsRefreshing);
+  const dispatch = useDispatch();
+  const isLoggedIn = useSelector(selectIsLoggedIn);
 
   useEffect(() => {
+    let count = 0;
+    console.log(`Another useEffect ${(count += 1)} times`);
     dispatch(refreshUser());
-  }, [dispatch]);
+  }, [dispatch, isLoggedIn]);
 
   return (
     !isRefreshing && (

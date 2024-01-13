@@ -11,7 +11,7 @@ import {
 } from 'redux-persist';
 import storage from 'redux-persist/lib/storage';
 import { contactsReducerWB } from './contacts/contactsSliceWB';
-import { authReducer, authIsErrorReducer } from './auth/authenticateSlice';
+import { authReducer, authIsErrorRefresh } from './auth/authenticateSlice';
 
 const middleware = [
   ...getDefaultMiddleware({
@@ -27,7 +27,7 @@ const authPersistConfig = {
 
 export const storeWB = configureStore({
   reducer: {
-    auth: persistReducer(authPersistConfig, authReducer, authIsErrorReducer),
+    auth: persistReducer(authPersistConfig, authReducer, authIsErrorRefresh),
     contacts: contactsReducerWB,
   },
   middleware,

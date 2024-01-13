@@ -7,7 +7,7 @@ import LogInMenu from 'components/LogInMenu/LogInMenu';
 import NavigationMenu from 'components/NavigationMenu/NavigationMenu';
 import UserMenu from 'components/UserMenu/UserMenu';
 
-function SharedLayout() {
+function SharedLayout({ fnForChangeIsLoggedIn }) {
   const isLoggedIn = useSelector(selectIsLoggedIn);
 
   return (

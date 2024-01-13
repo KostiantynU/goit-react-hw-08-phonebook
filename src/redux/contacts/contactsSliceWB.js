@@ -9,13 +9,11 @@ import { logOut } from 'redux/auth/authOperations';
 
 const handlePending = state => {
   state.phonebook.isLoading = true;
+  state.phonebook.isError = false;
 };
 const handleReject = (state, action) => {
   state.phonebook.isLoading = false;
-  state.phonebook.isError = action.payload.message;
-  if (action.payload.message === 'Rejected') {
-    return logOut();
-  }
+  state.phonebook.isError = action.payload;
 };
 
 const contactsSliceWB = createSlice({
@@ -32,18 +30,21 @@ const contactsSliceWB = createSlice({
     changeFilter(state, action) {
       state.filter = action.payload;
     },
+    handleChangeIsErrorPhoneBook(state, action) {
+      state.phonebook.isError = null;
+    },
   },
 
   extraReducers: {
     [fetchContactsWB.pending]: handlePending,
     [addContactWB.pending]: handlePending,
     [deleteContactWB.pending]: handlePending,
-    [logOut.pending]: handlePending,
+    // [logOut.pending]: handlePending,
     [updateContact.pending]: handlePending,
     [fetchContactsWB.rejected]: handleReject,
     [addContactWB.rejected]: handleReject,
     [deleteContactWB.rejected]: handleReject,
-    [logOut.rejected]: handleReject,
+    // [logOut.rejected]: handleReject,
     [updateContact.rejected]: handleReject,
     [fetchContactsWB.fulfilled](state, action) {
       state.phonebook.isLoading = false;
@@ -71,11 +72,12 @@ const contactsSliceWB = createSlice({
     [updateContact.fulfilled](state, action) {
       const indx = state.phonebook.items.findIndex(contact => contact._id === action.payload._id);
       state.phonebook.items.splice(indx, 1, action.payload);
-      state.isError = false;
+      state.isError = null;
       state.isLoading = false;
     },
   },
 });
 
-export const { changeFilter, updateUserLocal } = contactsSliceWB.actions;
+export const { changeFilter, updateUserLocal, handleChangeIsErrorPhoneBook } =
+  contactsSliceWB.actions;
 export const contactsReducerWB = contactsSliceWB.reducer;

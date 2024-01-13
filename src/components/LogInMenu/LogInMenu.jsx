@@ -1,26 +1,27 @@
 import { useDispatch, useSelector } from 'react-redux';
 import { LogInMenuStyled, ErrorMessageStyled } from './LogInMenuStyled';
 import { StyledUserLink } from 'components/SharedLayout/AppBarStyled';
-import { selectIsErrorAuth } from 'redux/auth/selectors';
-import { changeIsErrorAuth } from 'redux/auth/authenticateSlice';
+import { selectIsErrorLogin } from 'redux/auth/selectors';
+import { changeIsErrorLogin } from 'redux/auth/authenticateSlice';
 import { useEffect } from 'react';
 import { motion } from 'framer-motion';
 
 function LogInMenu() {
-  const isErrorAuth = useSelector(selectIsErrorAuth);
+  const isErrorLogin = useSelector(selectIsErrorLogin);
   const dispatch = useDispatch();
 
   const hideErrorMessage = () => {
     setTimeout(() => {
-      dispatch(changeIsErrorAuth());
+      dispatch(changeIsErrorLogin());
     }, 5000);
   };
 
   useEffect(() => {
-    if (isErrorAuth) {
+    if (isErrorLogin) {
       hideErrorMessage();
     }
   });
+
   return (
     <>
       <LogInMenuStyled>
@@ -30,7 +31,7 @@ function LogInMenu() {
         <StyledUserLink to="/login/" nav="">
           LogIn
         </StyledUserLink>
-        {isErrorAuth ? (
+        {isErrorLogin ? (
           <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}>
             <ErrorMessageStyled>Something wrong with authorization</ErrorMessageStyled>
           </motion.div>

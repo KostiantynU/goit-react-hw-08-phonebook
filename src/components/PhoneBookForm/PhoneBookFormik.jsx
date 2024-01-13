@@ -60,9 +60,6 @@ function PhoneBookForm() {
       initialValues={{ contactName: '', phoneNumber: '', favorite: false }}
       validate={validate}
       onSubmit={(values, { setSubmitting, resetForm, isValidating }) => {
-        console.log('begin');
-        console.log('setSubmitting', setSubmitting);
-        console.log('isValidating', isValidating);
         setSubmitting(true);
         const newContact = {
           contactName: values.contactName,
@@ -79,22 +76,9 @@ function PhoneBookForm() {
           resetForm();
           return alert(`${newContact.contactName} is already in list!`);
         }
-        console.log('middle');
-        console.log('setSubmitting', setSubmitting);
-        console.log('isValidating', isValidating);
-        if (isValidating) {
-          setSubmitting(false);
-          resetForm();
-          return alert('Something wrong with validation');
-        }
-
         setSubmitting(false);
         dispatch(addContactWB(newContact));
         resetForm();
-        console.log('end');
-        console.log('setSubmitting', setSubmitting);
-        console.log('isValidating', isValidating);
-        // formik.handleReset();
       }}
     >
       {({ handleSubmit, isSubmitting, values }) => (

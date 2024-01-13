@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { fetchContactsWB } from 'redux/contacts/operationsWithBackend';
 import {
   selectFilter,
-  selectIsError,
+  selectIsErrorPhoneBook,
   selectIsLoading,
   selectItems,
 } from 'redux/contacts/selectors';
@@ -14,7 +14,8 @@ import BookItem from 'components/PhoneBookListItem/PhoneBookListItem';
 function PhoneBookList() {
   const contactsItemsRedux = useSelector(selectItems);
   const isLoadingRedux = useSelector(selectIsLoading);
-  const isErrorRedux = useSelector(selectIsError);
+  const isErrorReduxPhoneBook = useSelector(selectIsErrorPhoneBook);
+  const dispatch = useDispatch();
 
   const filter = useSelector(selectFilter);
 
@@ -22,17 +23,15 @@ function PhoneBookList() {
     el.contactName.toLowerCase().includes(filter)
   );
 
-  const dispatch = useDispatch();
-
   useEffect(() => {
     dispatch(fetchContactsWB());
   }, [dispatch]);
 
   return (
     <>
-      {isErrorRedux && (
+      {isErrorReduxPhoneBook && (
         <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}>
-          <ErrorSpanStyled>Some error hapenned: {isErrorRedux}</ErrorSpanStyled>
+          <ErrorSpanStyled>Some error hapenned: {isErrorReduxPhoneBook}</ErrorSpanStyled>
           {/* Here I show an error message for the user - I think this is not necessary. Need to hide it, and show only notification?.. */}
         </motion.div>
       )}
