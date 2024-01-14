@@ -1,13 +1,14 @@
 import { useFormik } from 'formik';
 import { useDispatch, useSelector } from 'react-redux';
-import { selectItems } from 'redux/contacts/selectors';
+// import { selectItems } from 'redux/contacts/selectors';
 import { updateContact } from 'redux/contacts/operationsWithBackend';
 import { motion } from 'framer-motion';
 import { EditContactForm, EditInput, CloseBtn, EditSubBtn } from './EditContactStyled';
 import { ErrorDiv } from 'components/PhoneBookForm/PhoneBookFormStyled';
+import { selectItemsContacts } from 'redux/authAndContactsSlice/authAndContactsSelectors';
 
 const EditContact = ({ handleChangeEditOpen, contactId }) => {
-  const contactsItems = useSelector(selectItems);
+  const contactsItems = useSelector(selectItemsContacts);
   const dispatch = useDispatch();
   const existingContact = contactsItems.find(el => el._id === contactId);
 

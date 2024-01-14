@@ -10,8 +10,9 @@ import {
   REGISTER,
 } from 'redux-persist';
 import storage from 'redux-persist/lib/storage';
-import { contactsReducerWB } from './contacts/contactsSliceWB';
-import { authReducer, authIsErrorRefresh } from './auth/authenticateSlice';
+// import { contactsReducerWB } from './contacts/contactsSliceWB';
+// import { authReducer, authIsErrorRefresh } from './auth/authenticateSlice';
+import { unitedReducer } from './authAndContactsSlice/authAndContactsSlice';
 
 const middleware = [
   ...getDefaultMiddleware({
@@ -19,19 +20,29 @@ const middleware = [
   }),
 ];
 
+// const authPersistConfig = {
+//   key: 'auth',
+//   storage,
+//   whitelist: ['token'],
+// };
+
 const authPersistConfig = {
-  key: 'auth',
+  key: 'unitedState',
   storage,
   whitelist: ['token'],
 };
 
 export const storeWB = configureStore({
   reducer: {
-    auth: persistReducer(authPersistConfig, authReducer, authIsErrorRefresh),
-    contacts: contactsReducerWB,
+    unitedState: persistReducer(authPersistConfig, unitedReducer),
   },
   middleware,
   devTools: process.env.NODE_ENV === 'development',
 });
 
 export const persistorWB = persistStore(storeWB);
+
+// reducer: {
+//   auth: persistReducer(authPersistConfig, authReducer, authIsErrorRefresh),
+//   contacts: contactsReducerWB,
+// },

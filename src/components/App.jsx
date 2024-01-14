@@ -3,11 +3,16 @@ import { Routes, Route } from 'react-router-dom';
 import { AnimatePresence } from 'framer-motion';
 import { useDispatch, useSelector } from 'react-redux';
 import { refreshUser } from 'redux/auth/authOperations';
-import { selectIsLoggedIn, selectIsRefreshing } from 'redux/auth/selectors';
+// import { changeIsLoggedIn } from 'redux/auth/authenticateSlice';
+// import { selectIsLoggedIn, selectIsRefreshing } from 'redux/auth/selectors';
 import SharedLayout from './SharedLayout/SharedLayout';
 import PrivateRoute from './PrivateRoute';
 import PublicRoute from './PublicRoute';
-import { selectIsErrorPhoneBook } from 'redux/contacts/selectors';
+import {
+  selectIsLoggedInAuth,
+  selectIsRefreshingAuth,
+} from 'redux/authAndContactsSlice/authAndContactsSelectors';
+// import { selectIsErrorPhoneBook } from 'redux/contacts/selectors';
 
 export default function App() {
   const HomePage = lazy(() => import('pages/HomePage'));
@@ -16,14 +21,18 @@ export default function App() {
   const RegisterPage = lazy(() => import('pages/Register'));
   const NotFoundPage = lazy(() => import('pages/NotFound'));
 
-  const isErrorContacts = useSelector(selectIsErrorPhoneBook);
-  const isRefreshing = useSelector(selectIsRefreshing);
+  // const isRefreshing = useSelector(selectIsRefreshing);
+  const isRefreshing = useSelector(selectIsRefreshingAuth);
   const dispatch = useDispatch();
-  const isLoggedIn = useSelector(selectIsLoggedIn);
+  // const isLoggedIn = useSelector(selectIsLoggedIn);
+  const isLoggedIn = useSelector(selectIsLoggedInAuth);
+
+  // const isErrorPhoneBook = useSelector(selectIsErrorPhoneBook);
+  // if (isErrorPhoneBook === 'Token expired') {
+  //   dispatch(changeIsLoggedIn());
+  // }
 
   useEffect(() => {
-    let count = 0;
-    console.log(`Another useEffect ${(count += 1)} times`);
     dispatch(refreshUser());
   }, [dispatch]);
 

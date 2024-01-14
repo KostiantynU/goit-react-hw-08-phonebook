@@ -20,6 +20,11 @@ const authSlice = createSlice({
         state.isErrorLogin = false;
       },
     },
+    changeIsLoggedIn: {
+      reducer(state, action) {
+        state.isLoggedIn = false;
+      },
+    },
   },
   extraReducers: {
     [register.fulfilled](state, action) {
@@ -83,6 +88,6 @@ const authSlice = createSlice({
   },
 });
 
-export const { changeIsErrorLogin } = authSlice.actions;
+export const { changeIsErrorLogin, changeIsLoggedIn } = authSlice.actions;
 export const authIsErrorRefresh = authSlice.reducer;
 export const authReducer = authSlice.reducer;

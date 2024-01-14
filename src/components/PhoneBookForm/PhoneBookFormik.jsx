@@ -1,11 +1,13 @@
 import { Formik } from 'formik';
 import { useDispatch, useSelector } from 'react-redux';
-import { selectItems } from 'redux/contacts/selectors';
+// import { selectItems } from 'redux/contacts/selectors';
 import { addContactWB } from 'redux/contacts/operationsWithBackend';
 import { BookForm, AddBtn, Div, FavoriteCheckboxSecond, NameInput } from './PhoneBookFormStyled';
+import { selectItemsContacts } from 'redux/authAndContactsSlice/authAndContactsSelectors';
 
 function PhoneBookForm() {
-  const contactsItems = useSelector(selectItems);
+  // const contactsItems = useSelector(selectItems);
+  const contactsItems = useSelector(selectItemsContacts);
   const dispatch = useDispatch();
 
   const validate = values => {

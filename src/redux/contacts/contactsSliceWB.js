@@ -13,7 +13,8 @@ const handlePending = state => {
 };
 const handleReject = (state, action) => {
   state.phonebook.isLoading = false;
-  state.phonebook.isError = action.payload;
+
+  state.phonebook.isError = action.payload.handleErrorMessage;
 };
 
 const contactsSliceWB = createSlice({

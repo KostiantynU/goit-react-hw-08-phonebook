@@ -19,7 +19,10 @@ export const register = createAsyncThunk('auth/register', async (credentials, th
     setAuthHeader(response.data.token);
     return response.data;
   } catch (error) {
-    return thunkAPI.rejectWithValue(error.message);
+    return thunkAPI.rejectWithValue({
+      error: error.message,
+      handleErrorMessage: error.response.data.message,
+    });
   }
 });
 
@@ -30,7 +33,10 @@ export const logIn = createAsyncThunk('auth/login', async (credentials, thunkAPI
     setAuthHeader(response.data.token);
     return response.data;
   } catch (error) {
-    return thunkAPI.rejectWithValue(error.message);
+    return thunkAPI.rejectWithValue({
+      error: error.message,
+      handleErrorMessage: error.response.data.message,
+    });
   }
 });
 
@@ -42,13 +48,17 @@ export const logOut = createAsyncThunk('auth/logout', async (_, thunkAPI) => {
 
     return result.data;
   } catch (error) {
-    return thunkAPI.rejectWithValue(error.message);
+    return thunkAPI.rejectWithValue({
+      error: error.message,
+      handleErrorMessage: error.response.data.message,
+    });
   }
 });
 
 export const refreshUser = createAsyncThunk('auth/refresh', async (_, thunkAPI) => {
   const state = thunkAPI.getState();
-  const persistedToken = state.auth.token;
+  // const persistedToken = state.auth.token;
+  const persistedToken = state.unitedState.auth.user.token;
 
   if (persistedToken === null) {
     return thunkAPI.rejectWithValue('Unable to fetch user');
@@ -58,6 +68,10 @@ export const refreshUser = createAsyncThunk('auth/refresh', async (_, thunkAPI) 
     const response = await axios.get('api/auth/current');
     return response.data;
   } catch (error) {
-    return thunkAPI.rejectWithValue(error.message);
+    console.log(error);
+    return thunkAPI.rejectWithValue({
+      error: error.message,
+      handleErrorMessage: error.response.data.message,
+    });
   }
 });

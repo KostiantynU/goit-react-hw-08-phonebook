@@ -8,7 +8,10 @@ export const fetchContactsWB = createAsyncThunk('contacts/fetchAllWB', async (_,
 
     return response.data;
   } catch (error) {
-    return thunkAPI.rejectWithValue(error.message);
+    return thunkAPI.rejectWithValue({
+      error: error.message,
+      handleErrorMessage: error.response.data.message,
+    });
   }
 });
 
@@ -18,7 +21,10 @@ export const addContactWB = createAsyncThunk('contacts/addWB', async (credential
     const response = await axios.post('api/contacts', credentials);
     return response.data;
   } catch (error) {
-    return thunkAPI.rejectWithValue(error.message);
+    return thunkAPI.rejectWithValue({
+      error: error.message,
+      handleErrorMessage: error.response.data.message,
+    });
   }
 });
 
@@ -27,7 +33,10 @@ export const deleteContactWB = createAsyncThunk('contacts/delete', async (contac
     const response = await axios.delete(`api/contacts/${contactId}`);
     return response.data;
   } catch (error) {
-    return thunkAPI.rejectWithValue(error.message);
+    return thunkAPI.rejectWithValue({
+      error: error.message,
+      handleErrorMessage: error.response.data.message,
+    });
   }
 });
 
