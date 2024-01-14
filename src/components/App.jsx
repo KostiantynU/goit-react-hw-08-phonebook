@@ -7,6 +7,7 @@ import { selectIsLoggedIn, selectIsRefreshing } from 'redux/auth/selectors';
 import SharedLayout from './SharedLayout/SharedLayout';
 import PrivateRoute from './PrivateRoute';
 import PublicRoute from './PublicRoute';
+import { selectIsErrorPhoneBook } from 'redux/contacts/selectors';
 
 export default function App() {
   const HomePage = lazy(() => import('pages/HomePage'));
@@ -15,6 +16,7 @@ export default function App() {
   const RegisterPage = lazy(() => import('pages/Register'));
   const NotFoundPage = lazy(() => import('pages/NotFound'));
 
+  const isErrorContacts = useSelector(selectIsErrorPhoneBook);
   const isRefreshing = useSelector(selectIsRefreshing);
   const dispatch = useDispatch();
   const isLoggedIn = useSelector(selectIsLoggedIn);
@@ -23,7 +25,7 @@ export default function App() {
     let count = 0;
     console.log(`Another useEffect ${(count += 1)} times`);
     dispatch(refreshUser());
-  }, [dispatch, isLoggedIn]);
+  }, [dispatch]);
 
   return (
     !isRefreshing && (

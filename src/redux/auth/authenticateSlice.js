@@ -42,12 +42,21 @@ const authSlice = createSlice({
       state.isErrorLogin = null;
     },
     [logIn.rejected](state, action) {
+      state.user = { name: null, email: null };
+      state.token = null;
       state.isErrorLogin = action.payload;
       state.isLoggedIn = false;
       state.isRefreshing = false;
     },
     [logOut.fulfilled](state, action) {
-      state.user = { name: null, email: null };
+      state.user = action.payload.exitedUser;
+      state.token = null;
+      state.isLoggedIn = false;
+      state.isError = null;
+      state.isErrorLogin = null;
+    },
+    [logOut.rejected](state, action) {
+      state.user = null;
       state.token = null;
       state.isLoggedIn = false;
       state.isError = null;
