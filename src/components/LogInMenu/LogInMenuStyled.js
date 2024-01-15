@@ -11,7 +11,8 @@ export const LogInMenuStyled = styled.div`
 
 export const ErrorMessageStyled = styled.div`
   position: absolute;
+
   top: 0;
-  left: 120%;
+  /* left: 120%; */
   color: inherit;
 `;

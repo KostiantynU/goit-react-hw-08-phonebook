@@ -55,7 +55,9 @@ const unitedSlice = createSlice({
     changeIsErrorLogin(state, action) {
       state.auth.isErrorLogInAuth = false;
     },
-
+    changeIsErrorContacts(state, action) {
+      state.phonebook.isErrorContacts = false;
+    },
     changeIsLoggedIn(state, action) {
       state.auth.isLoggedInAuth = false;
     },
@@ -160,5 +162,6 @@ const unitedSlice = createSlice({
   },
 });
 
-export const { changeFilterUnited, changeIsErrorLogin, changeIsLoggedIn } = unitedSlice.actions;
+export const { changeFilterUnited, changeIsErrorLogin, changeIsLoggedIn, changeIsErrorContacts } =
+  unitedSlice.actions;
 export const unitedReducer = unitedSlice.reducer;
