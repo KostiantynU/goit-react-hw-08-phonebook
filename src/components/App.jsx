@@ -22,10 +22,10 @@ export default function App() {
   const NotFoundPage = lazy(() => import('pages/NotFound'));
 
   // const isRefreshing = useSelector(selectIsRefreshing);
-  const isRefreshing = useSelector(selectIsRefreshingAuth);
+  const isRefreshingAuth = useSelector(selectIsRefreshingAuth);
   const dispatch = useDispatch();
   // const isLoggedIn = useSelector(selectIsLoggedIn);
-  const isLoggedIn = useSelector(selectIsLoggedInAuth);
+  // const isLoggedIn = useSelector(selectIsLoggedInAuth);
 
   // const isErrorPhoneBook = useSelector(selectIsErrorPhoneBook);
   // if (isErrorPhoneBook === 'Token expired') {
@@ -37,7 +37,7 @@ export default function App() {
   }, [dispatch]);
 
   return (
-    !isRefreshing && (
+    !isRefreshingAuth && (
       <AnimatePresence>
         <Routes>
           <Route path="/" element={<SharedLayout />}>

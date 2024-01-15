@@ -30,7 +30,7 @@ export const logIn = createAsyncThunk('auth/login', async (credentials, thunkAPI
   try {
     // const response = await axios.post('users/login', credentials);
     const response = await axios.post('api/auth/login', credentials);
-    setAuthHeader(response.data.token);
+    setAuthHeader(response.data.user.token);
     return response.data;
   } catch (error) {
     return thunkAPI.rejectWithValue({
@@ -61,7 +61,7 @@ export const refreshUser = createAsyncThunk('auth/refresh', async (_, thunkAPI) 
   const persistedToken = state.unitedState.auth.user.token;
 
   if (persistedToken === null) {
-    return thunkAPI.rejectWithValue('Unable to fetch user');
+    return thunkAPI.rejectWithValue({ handleErrorMessage: 'Unable to fetch user' });
   }
   try {
     setAuthHeader(persistedToken);
