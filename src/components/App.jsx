@@ -8,10 +8,7 @@ import { refreshUser } from 'redux/auth/authOperations';
 import SharedLayout from './SharedLayout/SharedLayout';
 import PrivateRoute from './PrivateRoute';
 import PublicRoute from './PublicRoute';
-import {
-  selectIsLoggedInAuth,
-  selectIsRefreshingAuth,
-} from 'redux/authAndContactsSlice/authAndContactsSelectors';
+import { selectIsRefreshingAuth } from 'redux/authAndContactsSlice/authAndContactsSelectors';
 // import { selectIsErrorPhoneBook } from 'redux/contacts/selectors';
 
 export default function App() {
