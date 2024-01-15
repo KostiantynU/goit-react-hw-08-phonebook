@@ -103,7 +103,6 @@ function PhoneBookForm() {
               name="contactName"
               title="Name of contact may contain only letters, apostrophe, dash and spaces. For example Adrian, Jacob Mercer, Charles de Batz de Castelmore d'Artagnan"
               placeholder="Enter the contact name"
-              $width="300px"
               $marginBottom="0.5rem"
             />
 
@@ -113,7 +112,6 @@ function PhoneBookForm() {
               name="phoneNumber"
               title="Phone number may contains \'+\' and numbers"
               placeholder="Enter the contact phone number"
-              $width="300px"
               $marginBottom="0.5rem"
             />
 

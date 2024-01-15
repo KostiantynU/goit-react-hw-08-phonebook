@@ -1,8 +1,7 @@
-import { Formik, useFormik } from 'formik';
-import { motion } from 'framer-motion';
+import { Formik } from 'formik';
 import { logIn } from 'redux/auth/authOperations';
 import { useDispatch } from 'react-redux';
-import { AddBtn, NameInput, StyledTextInput } from 'components/PhoneBookForm/PhoneBookFormStyled';
+import { AddBtn, NameInput } from 'components/PhoneBookForm/PhoneBookFormStyled';
 import { LogInFormStyled } from './LogInFormStyled';
 
 function LogInForm() {
