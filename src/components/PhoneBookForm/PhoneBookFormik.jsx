@@ -61,7 +61,7 @@ function PhoneBookForm() {
     <Formik
       initialValues={{ contactName: '', phoneNumber: '', favorite: false }}
       validate={validate}
-      onSubmit={(values, { setSubmitting, resetForm, isValidating }) => {
+      onSubmit={(values, { setSubmitting, resetForm }) => {
         setSubmitting(true);
         const newContact = {
           contactName: values.contactName,
@@ -83,7 +83,7 @@ function PhoneBookForm() {
         resetForm();
       }}
     >
-      {({ handleSubmit, isSubmitting, values }) => (
+      {({ handleSubmit, isSubmitting }) => (
         <BookForm onSubmit={handleSubmit}>
           <Div>
             {/* <Label htmlFor="contactName">Name</Label>

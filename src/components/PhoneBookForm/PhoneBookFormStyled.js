@@ -46,7 +46,7 @@ export const StyledTextInput = styled.input.attrs(props => ({
 export const NameInput = ({ label, ...props }) => {
   const [field, meta] = useField(props);
   return (
-    <div>
+    <>
       <Label htmlFor={props.id || props.name}>{label}</Label>
       <StyledTextInput {...field} {...props} />
       {meta.error && meta.touched ? (
@@ -54,7 +54,7 @@ export const NameInput = ({ label, ...props }) => {
           <ErrorDiv>{meta.error}</ErrorDiv>
         </motion.div>
       ) : null}
-    </div>
+    </>
   );
 };
 
