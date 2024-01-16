@@ -25,11 +25,13 @@ export const StyledTextInput = styled.input.attrs(props => ({
   $width: props.$width || '90%',
   $margin: props.$margin || '0.5rem',
   $marginBottom: props.$marginBottom || '2rem',
+  $marginTop: props.$marginTop || '0',
 }))`
   width: ${props => props.$width};
   /* width: 90%; */
   height: 30px;
   margin: ${props => props.$margin};
+  margin-top: ${props => props.$marginTop};
   margin-bottom: ${props => props.$marginBottom};
   padding: 0.2rem;
   background: linear-gradient(310deg, rgb(131, 96, 195), rgb(46, 191, 145));
@@ -58,39 +60,11 @@ export const NameInput = ({ label, ...props }) => {
   );
 };
 
-// export const NameInput = styled.input.attrs(props => ({
-//   $formadd: props.$formadd || '100%',
-//   $margin: props.$margin || '0.5rem',
-// }))`
-//   /* width: ${props => props.$formadd}; */
-//   width: 90%;
-//   height: 30px;
-//   /* margin: ${props => props.$margin}; */
-//   margin-bottom: 2rem;
-//   padding: 0.2rem;
-//   background: linear-gradient(310deg, rgb(131, 96, 195), rgb(46, 191, 145));
-//   outline: none;
-//   border-radius: 10px;
-//   &:hover,
-//   &:focus {
-//     box-shadow: 0px 0px 8px 3px rgba(131, 96, 195, 0.75);
-//     -webkit-box-shadow: 0px 0px 8px 3px rgba(131, 96, 195, 0.75);
-//     -moz-box-shadow: 0px 0px 8px 3px rgba(131, 96, 195, 0.75);
-//   }
-// `;
-
 export const TelInput = styled(StyledTextInput).attrs(props => ({
   $formadd: props.$formadd || '90%',
 }))`
   /* width: ${props => props.$formadd}; */
 
-  margin: 0.5rem;
-`;
-
-export const SearchInput = styled(StyledTextInput).attrs(props => ({
-  $formadd: props.$formadd || '100%',
-}))`
-  width: ${props => props.$formadd};
   margin: 0.5rem;
 `;
 
