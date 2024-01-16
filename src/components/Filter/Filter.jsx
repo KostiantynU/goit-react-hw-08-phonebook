@@ -16,6 +16,7 @@ function Filter() {
       <StyledTextInput
         onChange={evt => dispatch(changeFilterUnited(evt.target.value.toLowerCase().trim()))}
         value={filterValue}
+        placeholder="Enter the contact name"
         $width="100%"
         $margin="0"
         $marginTop="0.5rem"

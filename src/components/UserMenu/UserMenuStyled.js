@@ -5,6 +5,5 @@ export const UserMenuStyled = styled.div`
   gap: 1rem;
 `;
 export const UserSpan = styled.span`
-  margin: 0.5rem;
   font-size: 18px;
 `;

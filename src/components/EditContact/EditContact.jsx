@@ -98,7 +98,7 @@ const EditContact = ({ handleChangeEditOpen, contactId }) => {
           //  editFormik.handleReset();
           resetForm();
           // return alert(`${updContact.contactName} is already in list!`);
-          return alert(`${values.contactName} is already in list!`);
+          return alert(`You haven't changed anything!`);
         }
         console.log('values', values);
         // dispatch(updateContact(updContact));
