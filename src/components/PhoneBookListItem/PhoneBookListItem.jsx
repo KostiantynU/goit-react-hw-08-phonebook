@@ -20,7 +20,7 @@ function BookItem({ contactName, phoneNumber, id, favorite }) {
 
   return (
     <PhoneBookListItem>
-      <NameSpan>{contactName} :</NameSpan> <TelSpan>{phoneNumber}</TelSpan>
+      <NameSpan>{contactName}</NameSpan> : <TelSpan>{phoneNumber}</TelSpan>
       {favorite ? <MdFavorite /> : <MdFavoriteBorder />}
       <ListBtn type="button" onClick={handleChangeEditOpen}>
         Edit
