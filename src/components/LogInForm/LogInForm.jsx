@@ -64,7 +64,6 @@ function LogInForm() {
             name="userEmail"
             label="Enter e-mail"
             placeholder="example@example.com"
-            $width="90%"
           />
           <NameInput
             id="userPassword"
@@ -72,7 +71,6 @@ function LogInForm() {
             name="userPassword"
             label="Enter password"
             placeholder="Enter password"
-            $width="90%"
           />
           <AddBtn type="submit" $padding="10px 15px" disabled={isSubmitting}>
             LogIn!
