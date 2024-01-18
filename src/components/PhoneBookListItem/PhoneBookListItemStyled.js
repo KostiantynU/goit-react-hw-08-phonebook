@@ -6,7 +6,7 @@ export const PhoneBookListItem = styled.li`
   justify-content: space-between;
   align-items: center; */
   display: grid;
-  grid-template-columns: 3.5fr 0.1fr 1.5fr 0.25fr 0.5fr 0.5fr;
+  grid-template-columns: 3.5fr 1fr 0.1fr 1.5fr 0.25fr 0.5fr 0.5fr;
   grid-gap: 5px;
   align-items: center;
   padding: 0.2rem;
@@ -17,7 +17,7 @@ export const PhoneBookListItem = styled.li`
   &:hover {
     background-image: linear-gradient(155deg, rgba(131, 96, 195, 0.2), rgba(46, 191, 145, 0.3));
   }
-  overflow: hidden;
+  /* overflow: hidden;
   &::after {
     content: '';
     position: absolute;
@@ -32,7 +32,7 @@ export const PhoneBookListItem = styled.li`
   }
   &:hover::after {
     transform: translateY(-50%) translateX(-8%) skew(-30deg);
-  }
+  } */
 `;
 export const NameSpan = styled.span`
   font-weight: 600;

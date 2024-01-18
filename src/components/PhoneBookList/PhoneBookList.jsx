@@ -55,7 +55,7 @@ function PhoneBookList() {
           {contactsItemsRedux.length ? (
             <>
               <ListContacts>
-                {filteredArray.map(({ contactName, _id, phoneNumber, favorite }) => {
+                {filteredArray.map(({ contactName, _id, phoneNumber, favorite, category }) => {
                   return (
                     <BookItem
                       key={_id}
@@ -63,6 +63,7 @@ function PhoneBookList() {
                       phoneNumber={phoneNumber}
                       id={_id}
                       favorite={favorite}
+                      category={category}
                     />
                   );
                 })}

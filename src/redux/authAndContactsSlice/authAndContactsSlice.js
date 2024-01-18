@@ -95,7 +95,7 @@ const unitedSlice = createSlice({
       state.auth.isRefreshingAuth = true;
     },
     [logIn.fulfilled](state, action) {
-      state.auth.user = { userName: '', phoneNumber: '', token: null };
+      state.auth.user = action.payload.user;
       // state.auth.user.token = action.payload.token;
       state.auth.isLoggedInAuth = true;
       state.auth.isLoadingAuth = false;

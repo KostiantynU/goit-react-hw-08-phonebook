@@ -9,7 +9,7 @@ import { MdFavoriteBorder, MdFavorite } from 'react-icons/md';
 import { useState } from 'react';
 import { selectIsLoadingContacts } from 'redux/authAndContactsSlice/authAndContactsSelectors';
 
-function BookItem({ contactName, phoneNumber, id, favorite }) {
+function BookItem({ contactName, phoneNumber, id, favorite, category }) {
   const dispatch = useDispatch();
   const [isEditOpen, setIsEditOpen] = useState(false);
   const handleChangeEditOpen = () => {
@@ -20,7 +20,8 @@ function BookItem({ contactName, phoneNumber, id, favorite }) {
 
   return (
     <PhoneBookListItem>
-      <NameSpan>{contactName}</NameSpan> <DoubleDotSpan>:</DoubleDotSpan>{' '}
+      <NameSpan>{contactName}</NameSpan>
+      <TelSpan>{category}</TelSpan> <DoubleDotSpan>:</DoubleDotSpan>{' '}
       <TelSpan>{phoneNumber}</TelSpan>
       {favorite ? <MdFavorite /> : <MdFavoriteBorder />}
       <ListBtn type="button" onClick={handleChangeEditOpen}>
@@ -38,5 +39,7 @@ BookItem.propTypes = {
   contactName: PropTypes.string.isRequired,
   phoneNumber: PropTypes.string.isRequired,
   id: PropTypes.string.isRequired,
+  favorite: PropTypes.string.isRequired,
+  category: PropTypes.string.isRequired,
 };
 export default BookItem;

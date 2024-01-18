@@ -105,6 +105,36 @@ export const FavoriteCheckboxSecond = ({ children, ...props }) => {
   );
 };
 
+export const SelectStyled = styled.select.attrs(props => ({
+  $width: props.$width || '90%',
+}))`
+  width: ${props => props.$width};
+  height: 30px;
+  margin: ${props => props.$margin};
+  margin-top: ${props => props.$marginTop};
+  margin-bottom: ${props => props.$marginBottom};
+  padding: 0.2rem;
+  background: linear-gradient(310deg, rgb(131, 96, 195), rgb(46, 191, 145));
+  outline: none;
+  border-radius: 10px;
+  &:hover,
+  &:focus {
+    box-shadow: 0px 0px 8px 3px rgba(131, 96, 195, 0.75);
+    -webkit-box-shadow: 0px 0px 8px 3px rgba(131, 96, 195, 0.75);
+    -moz-box-shadow: 0px 0px 8px 3px rgba(131, 96, 195, 0.75);
+  }
+`;
+
+export const SelectCategories = ({ children, ...props }) => {
+  const [field, meta] = useField({ ...props });
+
+  return (
+    <SelectStyled {...field} {...props}>
+      {children}
+    </SelectStyled>
+  );
+};
+
 export const Paragraph = styled.p`
   margin: 0.5rem;
 `;
@@ -112,6 +142,7 @@ export const Paragraph = styled.p`
 export const AddBtn = styled.button.attrs(props => ({
   $padding: props.$padding || '5px',
 }))`
+  display: block;
   margin: 0.5rem;
   padding: ${props => props.$padding};
   background: transparent;
