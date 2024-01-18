@@ -2,7 +2,7 @@ import PropTypes from 'prop-types';
 import { useDispatch, useSelector } from 'react-redux';
 import { deleteContactWB } from 'redux/contacts/operationsWithBackend';
 // import { selectIsLoading } from 'redux/contacts/selectors';
-import { PhoneBookListItem, NameSpan, TelSpan } from './PhoneBookListItemStyled';
+import { PhoneBookListItem, NameSpan, TelSpan, DoubleDotSpan } from './PhoneBookListItemStyled';
 import { ListBtn } from 'components/PhoneBookForm/PhoneBookFormStyled';
 import EditContact from 'components/EditContact/EditContact';
 import { MdFavoriteBorder, MdFavorite } from 'react-icons/md';
@@ -20,7 +20,8 @@ function BookItem({ contactName, phoneNumber, id, favorite }) {
 
   return (
     <PhoneBookListItem>
-      <NameSpan>{contactName}</NameSpan> : <TelSpan>{phoneNumber}</TelSpan>
+      <NameSpan>{contactName}</NameSpan> <DoubleDotSpan>:</DoubleDotSpan>{' '}
+      <TelSpan>{phoneNumber}</TelSpan>
       {favorite ? <MdFavorite /> : <MdFavoriteBorder />}
       <ListBtn type="button" onClick={handleChangeEditOpen}>
         Edit

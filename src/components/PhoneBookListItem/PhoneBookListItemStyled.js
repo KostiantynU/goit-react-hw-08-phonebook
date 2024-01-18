@@ -6,7 +6,9 @@ export const PhoneBookListItem = styled.li`
   justify-content: space-between;
   align-items: center; */
   display: grid;
-  grid-template-columns: 3fr 0.1fr 2fr 0.25fr 0.5fr 0.5fr;
+  grid-template-columns: 3.5fr 0.1fr 1.5fr 0.25fr 0.5fr 0.5fr;
+  grid-gap: 5px;
+  align-items: center;
   padding: 0.2rem;
   margin: 0.2rem;
   border: 1px solid rgb(46, 191, 145);
@@ -37,4 +39,9 @@ export const NameSpan = styled.span`
 `;
 export const TelSpan = styled(NameSpan)`
   font-weight: 500;
+`;
+export const DoubleDotSpan = styled.span`
+  font-weight: 600;
+  justify-self: center;
+  align-self: center;
 `;

@@ -58,7 +58,7 @@ const RegisterFormStyled = () => {
       }}
     >
       {({ handleSubmit, isSubmitting }) => (
-        <LogInFormStyled>
+        <LogInFormStyled onSubmit={handleSubmit}>
           <NameInput
             id="userName"
             type="text"

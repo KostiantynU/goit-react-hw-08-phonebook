@@ -59,7 +59,8 @@ function LogInMenu() {
             exit={{ opacity: 0 }}
             style={{ position: 'absolute', top: '0', left: '120%', width: '100%' }}
           >
-            <ErrorMessageStyled>Something wrong with authorization</ErrorMessageStyled>
+            {/* <ErrorMessageStyled>Something wrong with authorization</ErrorMessageStyled> */}
+            <ErrorMessageStyled>{isErrorLogInAuth}</ErrorMessageStyled>
           </motion.div>
         ) : (
           false

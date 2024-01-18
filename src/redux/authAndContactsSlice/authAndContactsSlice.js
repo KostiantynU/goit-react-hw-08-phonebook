@@ -63,14 +63,29 @@ const unitedSlice = createSlice({
     },
   },
   extraReducers: {
+    [register.pending](state, action) {
+      state.auth.isLoggedInAuth = false;
+      state.auth.isLoadingAuth = true;
+      state.auth.isRefreshingAuth = false;
+      state.auth.isErrorAuth = false;
+      state.auth.isErrorLogInAuth = false;
+    },
     [register.fulfilled](state, action) {
       state.auth.user = action.payload.newUser;
-      // state.auth.token = action.payload.token;
-      // state.auth.isLoggedIn = true;
+      state.auth.isLoggedInAuth = true;
+      state.auth.isLoadingAuth = false;
+      state.auth.isRefreshingAuth = false;
+      state.auth.isErrorAuth = false;
+      state.auth.isErrorLogInAuth = false;
     },
     [register.rejected](state, action) {
       state.auth.user = { userName: '', phoneNumber: '', token: null };
-      state.auth.isErrorAuth = action.payload.data;
+
+      state.auth.isLoggedInAuth = false;
+      state.auth.isLoadingAuth = false;
+      state.auth.isRefreshingAuth = false;
+      state.auth.isErrorAuth = false;
+      state.auth.isErrorLogInAuth = action.payload.handleErrorMessage;
     },
     [logIn.pending](state, action) {
       state.auth.user = { userName: '', phoneNumber: '', token: null };
@@ -80,7 +95,7 @@ const unitedSlice = createSlice({
       state.auth.isRefreshingAuth = true;
     },
     [logIn.fulfilled](state, action) {
-      state.auth.user = action.payload.user;
+      state.auth.user = { userName: '', phoneNumber: '', token: null };
       // state.auth.user.token = action.payload.token;
       state.auth.isLoggedInAuth = true;
       state.auth.isLoadingAuth = false;
