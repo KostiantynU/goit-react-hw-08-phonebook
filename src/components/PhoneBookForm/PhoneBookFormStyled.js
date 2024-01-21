@@ -37,6 +37,7 @@ export const StyledTextInput = styled.input.attrs(props => ({
   background: linear-gradient(310deg, rgb(131, 96, 195), rgb(46, 191, 145));
   outline: none;
   border-radius: 10px;
+  transition: box-shadow 300ms linear;
   &:hover,
   &:focus {
     box-shadow: 0px 0px 8px 3px rgba(131, 96, 195, 0.75);
@@ -117,6 +118,7 @@ export const SelectStyled = styled.select.attrs(props => ({
   background: linear-gradient(310deg, rgb(131, 96, 195), rgb(46, 191, 145));
   outline: none;
   border-radius: 10px;
+  transition: box-shadow 300ms linear;
   &:hover,
   &:focus {
     box-shadow: 0px 0px 8px 3px rgba(131, 96, 195, 0.75);

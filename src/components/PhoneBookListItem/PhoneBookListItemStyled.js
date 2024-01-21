@@ -6,7 +6,7 @@ export const PhoneBookListItem = styled.li`
   justify-content: space-between;
   align-items: center; */
   display: grid;
-  grid-template-columns: 3.5fr 1fr 0.1fr 1.5fr 0.25fr 0.5fr 0.5fr;
+  grid-template-columns: 3.5fr 1fr 0.1fr 1.7fr 0.25fr 0.5fr 0.5fr;
   grid-gap: 5px;
   align-items: center;
   padding: 0.2rem;

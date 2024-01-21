@@ -39,7 +39,7 @@ BookItem.propTypes = {
   contactName: PropTypes.string.isRequired,
   phoneNumber: PropTypes.string.isRequired,
   id: PropTypes.string.isRequired,
-  favorite: PropTypes.string.isRequired,
+  favorite: PropTypes.bool.isRequired,
   category: PropTypes.string.isRequired,
 };
 export default BookItem;
