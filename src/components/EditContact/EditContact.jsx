@@ -100,7 +100,6 @@ const EditContact = ({ handleChangeEditOpen, contactId }) => {
           // return alert(`${updContact.contactName} is already in list!`);
           return alert(`You haven't changed anything!`);
         }
-        console.log('values', values);
         // dispatch(updateContact(updContact));
         dispatch(updateContact(values));
         //  editFormik.handleReset();
