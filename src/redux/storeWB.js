@@ -29,7 +29,7 @@ const middleware = [
 const authPersistConfig = {
   key: 'unitedState',
   storage,
-  whitelist: ['unitedState.auth.user.token'],
+  whitelist: ['auth'],
 };
 
 export const storeWB = configureStore({

@@ -95,14 +95,14 @@ export const FavoriteCheckboxSecond = ({ children, ...props }) => {
   const [field, meta] = useField({ ...props, type: 'checkbox' });
 
   return (
-    <div>
+    <>
       <FavoriteLabelCheckbox>
         {<FavoriteCheckbox type="checkbox" {...field} {...props} />}
         {children}
         {field.checked ? <MdFavorite size="1.5em" /> : <MdFavoriteBorder size="1.5em" />}
       </FavoriteLabelCheckbox>
       {meta.touched && meta.error ? <ErrorDiv>{meta.error}</ErrorDiv> : null}
-    </div>
+    </>
   );
 };
 
@@ -128,7 +128,7 @@ export const SelectStyled = styled.select.attrs(props => ({
 `;
 
 export const SelectCategories = ({ children, ...props }) => {
-  const [field, meta] = useField({ ...props });
+  const [field] = useField({ ...props });
 
   return (
     <SelectStyled {...field} {...props}>

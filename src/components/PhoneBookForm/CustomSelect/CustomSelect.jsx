@@ -1,5 +1,10 @@
 import { useState } from 'react';
-import { SelectMenu, SelectMenuItem, SelectWrapper } from './CustomSelectStyled';
+import {
+  LabelForCustomSelect,
+  SelectMenu,
+  SelectMenuItem,
+  SelectWrapper,
+} from './CustomSelectStyled';
 import { useField } from 'formik';
 
 function CustomSelect(props) {
@@ -18,25 +23,29 @@ function CustomSelect(props) {
 
   const selectOptions = ['All', 'Friends', 'Family', 'Colleagues'];
   return (
-    <SelectWrapper
-      onClick={() => setDisplayUl(displayUl === 'none' ? 'block' : 'none')}
-      $margin={props.$margin}
-      $width={props.$width}
-      $marginTop={props.$marginTop}
-    >
-      {selectedValue}
-      <SelectMenu $display={displayUl} $width="100%">
-        {selectOptions.map(item => (
-          <SelectMenuItem
-            key={item}
-            onClick={event => handleClickOnCategory({ event, item })}
-            data-set-select="Select option"
-          >
-            {item}
-          </SelectMenuItem>
-        ))}
-      </SelectMenu>
-    </SelectWrapper>
+    <>
+      <LabelForCustomSelect>Choose category:</LabelForCustomSelect>
+      <SelectWrapper
+        onClick={() => setDisplayUl(displayUl === 'none' ? 'block' : 'none')}
+        $margin={props.$margin}
+        $width={props.$width}
+        $marginTop={props.$marginTop}
+        data-set-select-wrapper="Wrapper"
+      >
+        {selectedValue}
+        <SelectMenu $display={displayUl} $width="100%">
+          {selectOptions.map(item => (
+            <SelectMenuItem
+              key={item}
+              onClick={event => handleClickOnCategory({ event, item })}
+              data-set-select="Select option"
+            >
+              {item}
+            </SelectMenuItem>
+          ))}
+        </SelectMenu>
+      </SelectWrapper>
+    </>
   );
 }
 

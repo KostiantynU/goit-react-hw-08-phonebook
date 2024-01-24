@@ -62,3 +62,7 @@ export const SelectMenuItem = styled.li`
     background-image: linear-gradient(155deg, rgba(131, 96, 195, 0.2), rgba(46, 191, 145, 0.3));
   }
 `;
+
+export const LabelForCustomSelect = styled.p`
+  margin: 0.5rem;
+`;
