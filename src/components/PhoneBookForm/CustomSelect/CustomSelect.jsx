@@ -8,16 +8,14 @@ import {
 import { useField } from 'formik';
 
 function CustomSelect(props) {
-  const [_, meta, helpers] = useField(props.name);
+  const [, meta, helpers] = useField(props.name);
   const { value } = meta;
   const { setValue } = helpers;
-
-  const [selectedValue, setSelectedValue] = useState(value);
   const [displayUl, setDisplayUl] = useState('none');
 
   const handleClickOnCategory = async ({ item }) => {
     await setValue(item, false);
-    setSelectedValue(item);
+
     setDisplayUl('none');
   };
 
@@ -32,7 +30,8 @@ function CustomSelect(props) {
         $marginTop={props.$marginTop}
         data-set-select-wrapper="Wrapper"
       >
-        {selectedValue}
+        {/* {selectedValue ? selectedValue : 'Oh no, its undefined'} */}
+        {value ? value : 'Oh no it is undefined!'}
         <SelectMenu $display={displayUl} $width="100%">
           {selectOptions.map(item => (
             <SelectMenuItem
