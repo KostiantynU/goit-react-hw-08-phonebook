@@ -171,5 +171,5 @@ export const ErrorDiv = styled.div`
   margin: 0.2rem;
   font-size: 12px;
   font-weight: 600;
-  color: red;
+  color: rgb(204, 201, 209);
 `;

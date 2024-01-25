@@ -8,6 +8,10 @@ export const EditContactForm = styled.form`
   /* position: absolute;
   left: 0;
   top: -50%; */
+  box-shadow: 0px 0px 10px 1px rgba(217, 217, 217, 0.75);
+  -webkit-box-shadow: 0px 0px 10px 1px rgba(217, 217, 217, 0.75);
+  -moz-box-shadow: 0px 0px 10px 1px rgba(217, 217, 217, 0.75);
+  border-radius: 10px;
 `;
 export const EditInput = styled(StyledTextInput)`
   width: 300px;
@@ -32,4 +36,15 @@ export const CloseBtn = styled(EditSubBtn)`
   width: 20px;
   height: 20px;
   color: white;
+`;
+
+export const OverlayForEditForm = styled.div`
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  /* position: absolute; */
+  background-color: rgba(217, 217, 217, 0.2);
+  /* pointer-events: all; */
 `;

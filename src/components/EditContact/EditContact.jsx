@@ -3,9 +3,10 @@ import { useDispatch, useSelector } from 'react-redux';
 // import { selectItems } from 'redux/contacts/selectors';
 import { updateContact } from 'redux/contacts/operationsWithBackend';
 import { motion } from 'framer-motion';
-import { EditContactForm, CloseBtn, EditSubBtn } from './EditContactStyled';
+import { EditContactForm, CloseBtn, EditSubBtn, OverlayForEditForm } from './EditContactStyled';
 import { FavoriteCheckboxSecond, NameInput } from 'components/PhoneBookForm/PhoneBookFormStyled';
 import { selectItemsContacts } from 'redux/authAndContactsSlice/authAndContactsSelectors';
+import { createPortal } from 'react-dom';
 
 const EditContact = ({ handleChangeEditOpen, contactId }) => {
   const contactsItems = useSelector(selectItemsContacts);
@@ -115,45 +116,63 @@ const EditContact = ({ handleChangeEditOpen, contactId }) => {
           style={{
             position: 'absolute',
             left: '0',
-            top: '-90%',
-            width: '100%',
-            height: '100%',
-            display: 'flex',
-            alignItems: 'center',
-            borderRadius: '8px',
-            // background: 'rgb(46, 191, 145)',
-            background: 'linear-gradient(310deg, rgb(46, 191, 145), rgb(131, 96, 195))',
+            top: '0',
           }}
         >
-          <EditContactForm onSubmit={handleSubmit}>
-            <NameInput
-              id="contactName"
-              name="contactName"
-              type="text"
-              placeholder="Enter new name"
-              title="Name may contain only letters, apostrophe, dash and spaces. For example Adrian, Jacob Mercer, Charles de Batz de Castelmore d'Artagnan"
-              $width="300px"
-              $margin="0"
-              $marginBottom="0"
-            />
-            <NameInput
-              id="phoneNumber"
-              name="phoneNumber"
-              type="tel"
-              placeholder="Enter new number"
-              title="Phone number may contains \'+\' and numbers"
-              $width="300px"
-              $margin="0"
-              $marginBottom="0"
-            />
-            <FavoriteCheckboxSecond name={'favorite'} />
-            <EditSubBtn $padding={'5px'} type="submit" disabled={isSubmitting}>
-              Change
-            </EditSubBtn>
-            <CloseBtn type="button" onClick={handleChangeEditOpen}>
-              X
-            </CloseBtn>
-          </EditContactForm>
+          {createPortal(
+            <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}>
+              <OverlayForEditForm>
+                <div
+                  style={{
+                    position: 'absolute',
+                    left: '50%',
+                    top: '50%',
+                    translate: '-50% -50%',
+                    width: '80%',
+                    // height: '80px',
+                    display: 'flex',
+                    alignItems: 'center',
+                    borderRadius: '8px',
+                    // background: 'rgb(46, 191, 145)',
+                    background: 'linear-gradient(310deg, rgb(46, 191, 145), rgb(131, 96, 195))',
+                  }}
+                >
+                  <EditContactForm onSubmit={handleSubmit}>
+                    <NameInput
+                      label="Enter new name:"
+                      id="contactName"
+                      name="contactName"
+                      type="text"
+                      placeholder="Enter new name"
+                      title="Name may contain only letters, apostrophe, dash and spaces. For example Adrian, Jacob Mercer, Charles de Batz de Castelmore d'Artagnan"
+                      $width="300px"
+                      $margin="0"
+                      $marginBottom="0"
+                    />
+                    <NameInput
+                      label="Enter new phone number:"
+                      id="phoneNumber"
+                      name="phoneNumber"
+                      type="tel"
+                      placeholder="Enter new number"
+                      title="Phone number may contains \'+\' and numbers"
+                      $width="300px"
+                      $margin="0"
+                      $marginBottom="0"
+                    />
+                    <FavoriteCheckboxSecond name={'favorite'}>Change status</FavoriteCheckboxSecond>
+                    <EditSubBtn $padding={'5px'} type="submit" disabled={isSubmitting}>
+                      Change
+                    </EditSubBtn>
+                    <CloseBtn type="button" onClick={handleChangeEditOpen}>
+                      X
+                    </CloseBtn>
+                  </EditContactForm>
+                </div>
+              </OverlayForEditForm>
+            </motion.div>,
+            document.body
+          )}
         </motion.div>
       )}
     </Formik>
