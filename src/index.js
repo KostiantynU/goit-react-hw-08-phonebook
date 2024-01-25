@@ -10,7 +10,7 @@ import 'modern-normalize/modern-normalize.css';
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
-    <BrowserRouter basename="goit-react-phonebook">
+    <BrowserRouter basename="goit-react-phonebook-ui">
       <Provider store={storeWB}>
         <PersistGate loading={null} persistor={persistorWB}>
           <App />
