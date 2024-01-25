@@ -3,7 +3,7 @@ import { createAsyncThunk } from '@reduxjs/toolkit';
 
 // axios.defaults.baseURL = 'https://connections-api.herokuapp.com/'; // Old address for Repeta backend
 // axios.defaults.baseURL = 'http://localhost:3000';
-axios.defaults.baseURL = 'http://phonebook-backend-e72278147ae9.herokuapp.com/';
+axios.defaults.baseURL = 'https://phonebook-backend-e72278147ae9.herokuapp.com/';
 
 const setAuthHeader = token => {
   axios.defaults.headers.common.Authorization = `Bearer ${token}`;
