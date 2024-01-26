@@ -1,7 +1,13 @@
 import PhoneBookForm from 'components/PhoneBookForm/PhoneBookFormik';
 import PhoneBookList from 'components/PhoneBookList/PhoneBookList';
 import Filter from 'components/Filter/Filter';
-import { AddDiv, FilterListDiv, MainTitle, WrapperForContent } from 'components/AppStyled';
+import {
+  AddDiv,
+  FilterListDiv,
+  MainTitle,
+  MainTitleWrapper,
+  WrapperForContent,
+} from 'components/AppStyled';
 import { Title } from 'components/PhoneBookList/PhoneBookListStyled';
 import { motion } from 'framer-motion';
 
@@ -9,7 +15,9 @@ function HomePage() {
   return (
     <>
       <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}>
-        <MainTitle>Phonebook</MainTitle>
+        <MainTitleWrapper>
+          <MainTitle>Phonebook</MainTitle>
+        </MainTitleWrapper>
         <WrapperForContent>
           <AddDiv>
             <Title>Add contact</Title>

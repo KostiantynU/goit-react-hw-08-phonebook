@@ -4,7 +4,7 @@ This is a learning project Phonebook. Here I used such technologies and librarie
 - React;
 - React-redux;
 - React-router-dom;
-- REST API by 'https://connections-api.herokuapp.com/' (c) Repeta;
+- Node.js - REST API is my own backend, hosted on heroku.com;
 - Axios;
 - Formik;
 - Framer-motion;
