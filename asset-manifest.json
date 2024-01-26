@@ -1,23 +1,23 @@
 {
   "files": {
     "main.css": "/goit-react-phonebook-ui/static/css/main.76c059c9.css",
-    "main.js": "/goit-react-phonebook-ui/static/js/main.6362cd8a.js",
-    "static/js/322.8a9303c5.chunk.js": "/goit-react-phonebook-ui/static/js/322.8a9303c5.chunk.js",
-    "static/js/910.4ce2de45.chunk.js": "/goit-react-phonebook-ui/static/js/910.4ce2de45.chunk.js",
+    "main.js": "/goit-react-phonebook-ui/static/js/main.ef9d166d.js",
+    "static/js/322.7ca14ad2.chunk.js": "/goit-react-phonebook-ui/static/js/322.7ca14ad2.chunk.js",
+    "static/js/910.b6b6dc20.chunk.js": "/goit-react-phonebook-ui/static/js/910.b6b6dc20.chunk.js",
     "static/js/422.528b8db5.chunk.js": "/goit-react-phonebook-ui/static/js/422.528b8db5.chunk.js",
     "static/js/236.4b861111.chunk.js": "/goit-react-phonebook-ui/static/js/236.4b861111.chunk.js",
     "static/js/805.861e2cfc.chunk.js": "/goit-react-phonebook-ui/static/js/805.861e2cfc.chunk.js",
     "index.html": "/goit-react-phonebook-ui/index.html",
     "main.76c059c9.css.map": "/goit-react-phonebook-ui/static/css/main.76c059c9.css.map",
-    "main.6362cd8a.js.map": "/goit-react-phonebook-ui/static/js/main.6362cd8a.js.map",
-    "322.8a9303c5.chunk.js.map": "/goit-react-phonebook-ui/static/js/322.8a9303c5.chunk.js.map",
-    "910.4ce2de45.chunk.js.map": "/goit-react-phonebook-ui/static/js/910.4ce2de45.chunk.js.map",
+    "main.ef9d166d.js.map": "/goit-react-phonebook-ui/static/js/main.ef9d166d.js.map",
+    "322.7ca14ad2.chunk.js.map": "/goit-react-phonebook-ui/static/js/322.7ca14ad2.chunk.js.map",
+    "910.b6b6dc20.chunk.js.map": "/goit-react-phonebook-ui/static/js/910.b6b6dc20.chunk.js.map",
     "422.528b8db5.chunk.js.map": "/goit-react-phonebook-ui/static/js/422.528b8db5.chunk.js.map",
     "236.4b861111.chunk.js.map": "/goit-react-phonebook-ui/static/js/236.4b861111.chunk.js.map",
     "805.861e2cfc.chunk.js.map": "/goit-react-phonebook-ui/static/js/805.861e2cfc.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.76c059c9.css",
-    "static/js/main.6362cd8a.js"
+    "static/js/main.ef9d166d.js"
   ]
 }
