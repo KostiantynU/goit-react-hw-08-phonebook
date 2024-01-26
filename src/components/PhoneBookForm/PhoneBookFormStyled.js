@@ -28,7 +28,6 @@ export const StyledTextInput = styled.input.attrs(props => ({
   $marginTop: props.$marginTop || '0',
 }))`
   width: ${props => props.$width};
-  /* width: 90%; */
   height: 30px;
   margin: ${props => props.$margin};
   margin-top: ${props => props.$marginTop};
@@ -61,14 +60,6 @@ export const NameInput = ({ label, ...props }) => {
   );
 };
 
-export const TelInput = styled(StyledTextInput).attrs(props => ({
-  $formadd: props.$formadd || '90%',
-}))`
-  /* width: ${props => props.$formadd}; */
-
-  margin: 0.5rem;
-`;
-
 export const FavoriteCheckbox = styled.input`
   position: absolute;
   width: 1px;
@@ -76,10 +67,8 @@ export const FavoriteCheckbox = styled.input`
   margin: -1px;
   border: 0;
   padding: 0;
-
   white-space: nowrap;
   clip-path: inset(100%);
-  /* clip: rect(0 0 0 0); */
   overflow: hidden;
 `;
 
@@ -171,5 +160,5 @@ export const ErrorDiv = styled.div`
   margin: 0.2rem;
   font-size: 12px;
   font-weight: 600;
-  color: rgb(204, 201, 209);
+  color: rgb(252, 212, 252);
 `;
