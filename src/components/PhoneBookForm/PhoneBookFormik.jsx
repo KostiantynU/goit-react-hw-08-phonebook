@@ -11,6 +11,7 @@ function PhoneBookForm() {
   const contactsItems = useSelector(selectItemsContacts);
   const dispatch = useDispatch();
 
+  const selectOptions = ['All', 'Friends', 'Family', 'Colleagues'];
   const validate = values => {
     const errors = {};
     if (!values.contactName) {
@@ -84,7 +85,12 @@ function PhoneBookForm() {
               <option>Colleagues</option>
             </SelectCategories> */}
 
-            <CustomSelect name="category" $margin="0.5rem" $marginTop="0" />
+            <CustomSelect
+              name="category"
+              selectOptions={selectOptions}
+              $margin="0.5rem"
+              $marginTop="0"
+            />
 
             <AddBtn type="submit" disabled={isSubmitting}>
               Submit

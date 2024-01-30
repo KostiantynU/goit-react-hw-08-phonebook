@@ -25,6 +25,7 @@ const handleRejectContactsWithAuth = (state, action) => {
   ) {
     state.auth.isLoggedInAuth = false;
     state.auth.user.token = null;
+    state.token = null;
   }
 };
 
@@ -43,6 +44,7 @@ const initialState = {
     isErrorAuth: null,
     isErrorLogInAuth: null,
   },
+  token: null,
 };
 
 const unitedSlice = createSlice({
@@ -77,10 +79,11 @@ const unitedSlice = createSlice({
       state.auth.isRefreshingAuth = false;
       state.auth.isErrorAuth = false;
       state.auth.isErrorLogInAuth = false;
+      state.token = action.payload.newUser.token;
     },
     [register.rejected](state, action) {
       state.auth.user = { userName: '', phoneNumber: '', token: null };
-
+      state.token = null;
       state.auth.isLoggedInAuth = false;
       state.auth.isLoadingAuth = false;
       state.auth.isRefreshingAuth = false;
@@ -89,7 +92,7 @@ const unitedSlice = createSlice({
     },
     [logIn.pending](state, action) {
       state.auth.user = { userName: '', phoneNumber: '', token: null };
-
+      state.token = null;
       state.auth.isLoadingAuth = true;
       state.auth.isErrorAuth = null;
       state.auth.isRefreshingAuth = true;
@@ -101,6 +104,7 @@ const unitedSlice = createSlice({
       state.auth.isLoadingAuth = false;
       state.auth.isErrorAuth = false;
       state.auth.isRefreshingAuth = false;
+      state.token = action.payload.user.token;
     },
     [logIn.rejected](state, action) {
       state.auth.user = { userName: '', phoneNumber: '', token: null };
@@ -108,6 +112,7 @@ const unitedSlice = createSlice({
       state.auth.isLoadingAuth = false;
       state.auth.isErrorLogInAuth = action.payload.handleErrorMessage;
       state.auth.isRefreshingAuth = false;
+      state.token = null;
     },
     [logOut.fulfilled](state, action) {
       state.auth.user = action.payload.exitedUser;
@@ -116,6 +121,7 @@ const unitedSlice = createSlice({
       state.auth.isLoadingAuth = false;
       state.auth.isErrorAuth = false;
       state.auth.isRefreshingAuth = false;
+      state.token = null;
     },
     [logOut.rejected](state, action) {
       state.auth.user = { userName: '', phoneNumber: '', token: null };
@@ -123,6 +129,7 @@ const unitedSlice = createSlice({
       state.auth.isLoadingAuth = false;
       state.auth.isErrorAuth = action.payload.data;
       state.auth.isRefreshingAuth = false;
+      state.token = null;
     },
     [refreshUser.pending](state) {
       // state.auth.isLoggedInAuth = false;
@@ -136,6 +143,7 @@ const unitedSlice = createSlice({
       state.auth.isLoadingAuth = false;
       state.auth.isErrorAuth = false;
       state.auth.isRefreshingAuth = false;
+      state.token = action.payload.token;
     },
     [refreshUser.rejected](state, action) {
       state.auth.user = { userName: '', phoneNumber: '', token: null };
@@ -143,6 +151,7 @@ const unitedSlice = createSlice({
       state.auth.isLoadingAuth = false;
       state.auth.isErrorAuth = action.payload.handleErrorMessage;
       state.auth.isRefreshingAuth = false;
+      state.token = null;
     },
     [fetchContactsWB.pending]: handleContactsPending,
     [addContactWB.pending]: handleContactsPending,

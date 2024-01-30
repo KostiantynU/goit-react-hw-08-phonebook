@@ -19,7 +19,6 @@ function CustomSelect(props) {
     setDisplayUl('none');
   };
 
-  const selectOptions = ['All', 'Friends', 'Family', 'Colleagues'];
   return (
     <>
       <LabelForCustomSelect>Choose category:</LabelForCustomSelect>
@@ -33,7 +32,7 @@ function CustomSelect(props) {
         {/* {selectedValue ? selectedValue : 'Oh no, its undefined'} */}
         {value ? value : 'Oh no it is undefined!'}
         <SelectMenu $display={displayUl} $width="100%">
-          {selectOptions.map(item => (
+          {props.selectOptions.map(item => (
             <SelectMenuItem
               key={item}
               onClick={event => handleClickOnCategory({ event, item })}

@@ -3,7 +3,8 @@ import { createAsyncThunk } from '@reduxjs/toolkit';
 
 // axios.defaults.baseURL = 'https://connections-api.herokuapp.com/'; // Old address for Repeta backend
 // axios.defaults.baseURL = 'http://localhost:3000';
-axios.defaults.baseURL = 'https://phonebook-backend-e72278147ae9.herokuapp.com/';
+// axios.defaults.baseURL = 'https://phonebook-backend-e72278147ae9.herokuapp.com/';
+axios.defaults.baseURL = 'https://vernal-guide-412719.lm.r.appspot.com/';
 
 const setAuthHeader = token => {
   axios.defaults.headers.common.Authorization = `Bearer ${token}`;
@@ -60,7 +61,7 @@ export const logOut = createAsyncThunk('auth/logout', async (_, thunkAPI) => {
 export const refreshUser = createAsyncThunk('auth/refresh', async (_, thunkAPI) => {
   const state = thunkAPI.getState();
   // const persistedToken = state.auth.token;
-  const persistedToken = state.unitedState.auth.user.token;
+  const persistedToken = state.token;
 
   if (persistedToken === null) {
     return thunkAPI.rejectWithValue({ handleErrorMessage: 'Unable to fetch user' });
@@ -70,7 +71,6 @@ export const refreshUser = createAsyncThunk('auth/refresh', async (_, thunkAPI) 
     const response = await axios.get('api/auth/current');
     return response.data;
   } catch (error) {
-    console.log(error);
     return thunkAPI.rejectWithValue({
       error: error.message,
       handleErrorMessage: error.response.data.message,
